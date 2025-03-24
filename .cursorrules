@@ -1,0 +1,36 @@
+# Reglas para agentes trabajando con el script AutoHotkey
+
+## Información básica
+- El script principal está ubicado en: `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk`
+- Este script se ejecuta automáticamente al iniciar Windows
+
+## Convenciones
+- La documentación correcta de teclas modificadoras es:
+  * ^ = Ctrl
+  * + = Shift
+  * ! = Alt
+  * # = Tecla Windows
+- Mantener la estructura de secciones definidas con comentarios y separadores
+- Usar la nomenclatura `NombreTecla+NombreTecla+Letra` en los comentarios (ej: Ctrl+Alt+C)
+- Usar la nomenclatura `^!c` en el código (ej: Ctrl+Alt+C)
+
+## Al añadir nuevos comandos
+- Para comandos en modo administrador, usar el parámetro `*RunAs`
+- Para comandos silenciosos, añadir `, Hide` al final del comando Run
+- Estructura recomendada: `Modificador+Tecla::Run, [comando]`
+- Para PowerShell: `-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass`
+- Para CMD: `/c` para ejecutar y cerrar
+
+## Al ejecutar comandos en shells específicos
+- CMD: `%ComSpec% /c "comando",,Hide`
+- PowerShell: `powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "comando",,Hide`
+- PowerShell Core: `pwsh.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "comando",,Hide`
+- WSL/Bash: `wsl.exe -e bash -c "comando",,Hide`
+- Python: `python.exe -c "código",,Hide`
+
+## Al actualizar el script
+1. Hacer una copia de seguridad antes de modificar
+2. Probar cada nuevo atajo añadido
+3. Actualizar este archivo .cursorrules si hay cambios en las convenciones
+4. Actualizar README.md con los nuevos atajos añadidos
+5. Recargar el script con Win+| tras los cambios
