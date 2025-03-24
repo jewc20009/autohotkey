@@ -1,0 +1,13 @@
+node_modules/
+python_modules/
+*.pyc
+__pycache__/
+.env
+.vscode/
+.idea/
+dist/
+build/
+*.log
+.cursorrules
+desktop.ini
+logs/
