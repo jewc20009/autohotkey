@@ -13,6 +13,7 @@ SetWorkingDir %A_ScriptDir%
 global CURSOR_PATH := "C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe"
 VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
+WARP_PATH := "D:\Warp\warp.exe"
 ;* KeyWait = Espera a que se suelte la tecla
 ;* DOCUMENTACIÓN DE AUTOHOTKEY
 ;* < = Usar tecla izquierda específicamente (e.g., <^a es Ctrl izquierdo + a)
@@ -38,9 +39,22 @@ TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
 ;* WinWaitActive = Espera a que una ventana esté activa
 
 ; Funciones
-RunCursor(path) {
+RunCursor(path := "") {
     global CURSOR_PATH
-    Run, *RunAs "%CURSOR_PATH%" -n "%path%"
+    if (path = "") {
+        Run, *RunAs "%CURSOR_PATH%"
+    } else {
+        Run, *RunAs "%CURSOR_PATH%" -n "%path%"
+    }
+}
+
+RunWarp(args := "") {
+    global WARP_PATH
+    if (args = "") {
+        Run, *RunAs "%WARP_PATH%"
+    } else {
+        Run, *RunAs "%WARP_PATH%" %args%
+    }
 }
 
 ; ============================================
@@ -51,7 +65,7 @@ RunCursor(path) {
 return
 
 ^!v::
-    Run, *RunAs https://chatgpt.com/
+    Run, *RunAs https://chat.openai.com/chat
 return
 
 ^!2::
@@ -60,7 +74,7 @@ return
 return
 
 #|::
-    Reload ; Recarga este script
+    Reload  ; Recarga este script
 return
 
 ; ============================================
@@ -71,10 +85,7 @@ return
     RunCursor("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup")
 return
 
-^!p::
-    global CURSOR_PATH
-    Run, *RunAs powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CURSOR_PATH%'",, Hide
-return
+
 
 #+5::
     Run, *RunAs "C:\Apporisong\GeneratedExcels"
@@ -93,3 +104,6 @@ return
     RunCursor("D:\RootDirectory\Origisong")
 return
 
+#+3::
+    Run, *RunAs "D:\Warp\warp.exe"
+return
