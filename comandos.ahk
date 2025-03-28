@@ -9,6 +9,10 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
+; Variables globales
+global CURSOR_PATH := "C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe"
+VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
 ;* KeyWait = Espera a que se suelte la tecla
 ;* DOCUMENTACIÓN DE AUTOHOTKEY
 ;* < = Usar tecla izquierda específicamente (e.g., <^a es Ctrl izquierdo + a)
@@ -33,20 +37,25 @@ SetWorkingDir %A_ScriptDir%
 ;* WinActivate = Activa una ventana
 ;* WinWaitActive = Espera a que una ventana esté activa
 
+; Funciones
+RunCursor(path) {
+    global CURSOR_PATH
+    Run, *RunAs "%CURSOR_PATH%" -n "%path%"
+}
 
 ; ============================================
 ; Atajos de Teclado para Abrir Sitios Web
 ; ============================================
 ^!f::
-    Run, https://platform.openai.com/api-keys
+    Run, *RunAs https://platform.openai.com/api-keys
 return
 
 ^!v::
-    Run, https://chatgpt.com/
+    Run, *RunAs https://chatgpt.com/
 return
 
 ^!2::
-    Run, https://www.youtube.com/
+    Run, *RunAs https://www.youtube.com/
     MsgBox, "Youtube abierto"
 return
 
@@ -58,103 +67,29 @@ return
 ; Atajos de Teclado para Ejecutar Aplicaciones Locales
 ; ============================================
 
-^!a::
-    Run, "C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe" -n "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk"
+^!e::
+    RunCursor("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup")
 return
 
-^!5::
-    Run, "C:\Users\jewc2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Aplicaciones de Chrome\Odoo.lnk"
-return
-
-#+4::
-    Run, "C:\Users\jewc2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Vysor Inc\Vysor.lnk"
+^!p::
+    global CURSOR_PATH
+    Run, *RunAs powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CURSOR_PATH%'",, Hide
 return
 
 #+5::
-    Run, "C:\Apporisong\GeneratedExcels"
+    Run, *RunAs "C:\Apporisong\GeneratedExcels"
 return
 
 #+6::
-    Run, "C:\Users\jewc2\OneDrive\Documentos\Importación de zapatillas\Segundo viaje a China"
+    Run, *RunAs "C:\Users\jewc2\OneDrive\Documentos\Importación de zapatillas\Segundo viaje a China"
 return
 
 #y::
-    Run, "D:\Scripts\scripts\turbo2.bat"
+    Run, *RunAs "D:\Scripts\scripts\turbo2.bat"
 return
 
-; ============================================
-; Atajos de Teclado para Ejecutar Aplicaciones
-; ============================================
-#t::
-    ; Implementación usando variable global
-    global toggleState
-    if (toggleState = "")  ; Inicializar la primera vez
-        toggleState := 0
-    
-    ; Verifica si la ventana ya existe
-    DetectHiddenWindows, On
-    if WinExist("ahk_exe warp.exe")
-    {
-        if (toggleState = 1)  ; Si está visible, ocultarla
-        {
-            WinMinimize, ahk_exe warp.exe
-            toggleState := 0
-        }
-        else  ; Si está oculta, mostrarla
-        {
-            WinGet, estadoMin, MinMax, ahk_exe warp.exe
-            if (estadoMin = -1)
-                WinRestore, ahk_exe warp.exe
-                
-            WinActivate, ahk_exe warp.exe
-            
-            ; Forzar al frente
-            WinSet, AlwaysOnTop, On, ahk_exe warp.exe
-            Sleep, 10
-            WinSet, AlwaysOnTop, Off, ahk_exe warp.exe
-            
-            toggleState := 1
-        }
-    }
-    else  ; Si la aplicación no está en ejecución, iniciarla
-    {
-        Run, *RunAs "D:\Warp\warp.exe"
-        WinWait, ahk_exe warp.exe,, 5
-        if !ErrorLevel
-        {
-            WinActivate, ahk_exe warp.exe
-            toggleState := 1
-        }
-    }
-    DetectHiddenWindows, Off
-return
 
-; ============================================
-; Atajos de Teclado para Ejecutar Comandos (En Shells Específicos)
-; ============================================
-; CMD (Command Prompt) en modo administrador
-^!c::
-    Run, *RunAs %ComSpec% /c "ipconfig",, Hide
+#+2::
+    RunCursor("D:\RootDirectory\Origisong")
 return
-
-; PowerShell en modo administrador - Lanza Cursor IDE
-^!p::
-    Run, *RunAs powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "Start-Process 'C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe'",, Hide
-return
-
-; PowerShell Core (si lo tienes instalado) en modo administrador
-^!w::
-    Run, *RunAs pwsh.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command "Get-Date",, Hide
-return
-
-; Bash (Windows Subsystem for Linux - WSL) en modo administrador
-^!b::
-    Run, *RunAs wsl.exe -e bash -c "ls -la",, Hide
-return
-
-; Python en modo administrador
-^!y::
-    Run, *RunAs python.exe -c "print('Ejecutado con éxito desde AutoHotkey')",, Hide
-return
-
 

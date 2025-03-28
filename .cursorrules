@@ -1,7 +1,7 @@
 # Reglas para agentes trabajando con el script AutoHotkey
 
 ## Información básica
-- El script principal está ubicado en: `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk`
+- El script principal está ubicado en: `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk` 
 - Este script se ejecuta automáticamente al iniciar Windows
 
 ## Convenciones
