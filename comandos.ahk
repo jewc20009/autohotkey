@@ -4,16 +4,17 @@
 ;* ! = Alt
 ;* # = Tecla Windows
 
-#SingleInstance force
+#SingleInstance Force
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 ; Variables globales
 global CURSOR_PATH := "C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe"
-VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
-WARP_PATH := "D:\Warp\warp.exe"
+global VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+global TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
+global WARP_PATH := "D:\Warp\warp.exe"
+
 ;* KeyWait = Espera a que se suelte la tecla
 ;* DOCUMENTACIÓN DE AUTOHOTKEY
 ;* < = Usar tecla izquierda específicamente (e.g., <^a es Ctrl izquierdo + a)
@@ -70,7 +71,14 @@ return
 
 ^!2::
     Run, *RunAs https://www.youtube.com/
-    MsgBox, "Youtube abierto"
+return
+
+#h::
+    Run, *RunAs https://python.langchain.com/docs
+return
+
+#j::
+    Run, *RunAs https://langchain-ai.github.io/langgraph/
 return
 
 #|::
@@ -85,25 +93,22 @@ return
     RunCursor("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup")
 return
 
-
+!g::
+    Run, https://python.langchain.com/docs/introduction/
+return
 
 #+5::
     Run, *RunAs "C:\Apporisong\GeneratedExcels"
-return
-
-#+6::
-    Run, *RunAs "C:\Users\jewc2\OneDrive\Documentos\Importación de zapatillas\Segundo viaje a China"
 return
 
 #y::
     Run, *RunAs "D:\Scripts\scripts\turbo2.bat"
 return
 
-
 #+2::
     RunCursor("D:\RootDirectory\Origisong")
 return
 
-#+3::
+#t::
     Run, *RunAs "D:\Warp\warp.exe"
 return
