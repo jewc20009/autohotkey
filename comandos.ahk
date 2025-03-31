@@ -15,30 +15,6 @@ global VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\C
 global TRAE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Trae\Trae.exe"
 global WARP_PATH := "D:\Warp\warp.exe"
 
-;* KeyWait = Espera a que se suelte la tecla
-;* DOCUMENTACIÓN DE AUTOHOTKEY
-;* < = Usar tecla izquierda específicamente (e.g., <^a es Ctrl izquierdo + a)
-;* > = Usar tecla derecha específicamente
-;* ~ = La tecla original mantiene su función
-;* $ = Fuerza el uso del hook de tecla
-;* * = Comodín (la tecla se activa incluso si se mantienen otras teclas)
-;* UP = Se activa al soltar la tecla en lugar de al presionarla
-;* :: = Define un hotkey/hotstring
-;* return = Termina un bloque de código
-
-;* SetWorkingDir = Establece el directorio de trabajo
-;* #SingleInstance force = Permite solo una instancia del script
-;* #NoEnv = Recomienda para compatibilidad
-;* SendMode Input = Modo más rápido y confiable
-;* SetWorkingDir %A_ScriptDir% = Asegura consistencia
-;* Run = Ejecuta un programa o archivo
-;* Send/SendInput = Envía teclas
-;* MsgBox = Muestra un cuadro de mensaje
-;* Sleep = Pausa el script
-;* KeyWait = Espera a que se suelte una tecla
-;* WinActivate = Activa una ventana
-;* WinWaitActive = Espera a que una ventana esté activa
-
 ; Funciones
 RunCursor(path := "") {
     global CURSOR_PATH
@@ -81,6 +57,11 @@ return
     Run, *RunAs https://langchain-ai.github.io/langgraph/
 return
 
++!3::
+    Run, *RunAs https://gemini.google.com/app
+return
+
+
 #|::
     Reload  ; Recarga este script
 return
@@ -88,27 +69,86 @@ return
 ; ============================================
 ; Atajos de Teclado para Ejecutar Aplicaciones Locales
 ; ============================================
+; ============================================
+; Obtener la ruta raíz del proyecto
+; ============================================
+GetProjectRoot() {
+    ; Intenta obtener la ruta raíz del proyecto
+    ; Primero verifica si estamos en un repositorio Git
+    RunWait, %ComSpec% /c "git rev-parse --show-toplevel > %A_Temp%\project_root.txt", , Hide
+    FileRead, projectRoot, %A_Temp%\project_root.txt
+    projectRoot := Trim(projectRoot)
+    
+    ; Si no estamos en un repositorio Git, usa el directorio actual
+    if (ErrorLevel || projectRoot = "") {
+        projectRoot := A_WorkingDir
+    }
+    
+    return projectRoot
+}
 
-^!e::
-    RunCursor("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup")
+; Guardar la ruta raíz en una variable global
+global PROJECT_ROOT := GetProjectRoot()
+
+^!e:: ;* Atajo para abrir el directorio de StartUp
+    RunCursor(%PROJECT_ROOT%)
 return
 
-!g::
+!g:: ;* Atajo para abrir la documentación de LangChain en el navegador
     Run, https://python.langchain.com/docs/introduction/
 return
 
-#+5::
+#+5:: ;* Atajo para abrir el directorio de GeneratedExcels
     Run, *RunAs "C:\Apporisong\GeneratedExcels"
 return
 
-#y::
+#y:: ;* Atajo para ejecutar turbo2.bat
     Run, *RunAs "D:\Scripts\scripts\turbo2.bat"
 return
 
-#+2::
+#+2:: ;* Atajo para abrir el directorio de Origisong
     RunCursor("D:\RootDirectory\Origisong")
 return
 
-#t::
+#t:: ;* Atajo para abrir Warp
     Run, *RunAs "D:\Warp\warp.exe"
+return
+
++!4:: ;* Atajo para abrir el directorio de Scripts
+    RunCursor("D:\Users\autohotkey")
+    MsgBox "comandos.ahk cargado..."
+    
+return
+
+
+; Función para extraer los atajos dinámicamente del script
+MapShortcuts() {
+    scriptFile := A_ScriptFullPath  ; Obtiene la ruta completa del archivo de script actual
+    shortcuts := []  ; Crea un array vacío para almacenar los atajos
+    FileRead, scriptContent, %scriptFile%
+    
+    ; Busca líneas que definan atajos (: o ::)
+    Loop, Parse, scriptContent, `n, `r
+    {
+        line := A_LoopField
+        if (RegExMatch(line, "^(.*)::(.*)$", match)) {  ; Busca el patrón de "::"
+            hotkey := Trim(match1)  ; Obtiene la combinación de teclas
+            action := Trim(match2)  ; Obtiene la acción asociada
+            if (hotkey != "" && action != "") {
+                shortcuts.Push(hotkey . " -> " . action)  ; Guarda en el array
+            }
+        }
+    }
+    
+    ; Construye la salida para mostrarla
+    output := "Lista Dinámica de Atajos:`n`n"
+    for index, shortcut in shortcuts {
+        output .= shortcut . "`n"
+    }
+    MsgBox, %output%  ; Muestra los atajos en un cuadro de mensaje
+}
+
+; Llama a la función para imprimir los atajos dinámicamente con Win+M
+#m::
+    MapShortcuts()
 return
