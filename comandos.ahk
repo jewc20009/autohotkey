@@ -44,7 +44,6 @@ return
 ^!v::
     Run, *RunAs https://chat.openai.com/chat
 return
-
 ^!2::
     Run, *RunAs https://www.youtube.com/
 return
@@ -61,6 +60,9 @@ return
     Run, *RunAs https://gemini.google.com/app
 return
 
+^!r::
+    Run, *RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc
+return
 
 #|::
     Reload  ; Recarga este script
@@ -107,7 +109,7 @@ return
 return
 
 #+2:: ;* Atajo para abrir el directorio de Origisong
-    RunCursor("D:\RootDirectory\Origisong")
+    RunCursor("D:\Users\Origis")
 return
 
 #t:: ;* Atajo para abrir Warp
@@ -120,6 +122,9 @@ return
     
 return
 
+#4:: ;* Atajo para abrir [Vysor] Windows + Shift + 4
+    Run, *RunAs "C:\Users\jewc2\AppData\Local\vysor\Vysor.exe"
+return
 
 ; Función para extraer los atajos dinámicamente del script
 MapShortcuts() {
