@@ -64,8 +64,8 @@ return
 ^!r::
     Run, *RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc
 return
-
-#|::
+#|:: ;* Atajo para copiar el script a la carpeta de StartUp
+    FileCopy, %A_ScriptFullPath%, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk", 1
     Reload  ; Recarga este script
 return
 
