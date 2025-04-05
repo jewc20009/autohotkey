@@ -48,8 +48,9 @@ return
     Run, *RunAs https://www.youtube.com/
 return
 
-#h::
-    Run, *RunAs https://python.langchain.com/docs
+
+!g:: ;* Atajo para abrir la documentación de LangChain en el navegador
+    Run, https://python.langchain.com/docs/introduction/
 return
 
 #j::
@@ -96,16 +97,17 @@ global PROJECT_ROOT := GetProjectRoot()
     RunCursor(%PROJECT_ROOT%)
 return
 
-!g:: ;* Atajo para abrir la documentación de LangChain en el navegador
-    Run, https://python.langchain.com/docs/introduction/
-return
 
-#+5:: ;* Atajo para abrir el directorio de GeneratedExcels
-    Run, *RunAs "C:\Apporisong\GeneratedExcels"
+^!y:: ;* Atajo para abrir YouTube Music
+    Run, *RunAs "C:\Users\jewc2\AppData\Local\Programs\youtube-music\YouTube Music.exe"
 return
 
 #y:: ;* Atajo para ejecutar turbo2.bat
     Run, *RunAs "D:\Scripts\scripts\turbo2.bat"
+return
+
++!o:: ;* Atajo para abrir el directorio de Origisong
+    RunCursor("D:\RootDirectory\Origisong")
 return
 
 #+2:: ;* Atajo para abrir el directorio de Origisong
@@ -116,15 +118,16 @@ return
     Run, *RunAs "D:\Warp\warp.exe"
 return
 
-+!4:: ;* Atajo para abrir el directorio de Scripts
-    RunCursor("D:\Users\autohotkey")
-    MsgBox "comandos.ahk cargado..."
-    
++!4:: ;* Atajo para abrir el directorio de comandos.ahk
+    RunCursor("D:\Users\autohotkey")    
 return
 
 #4:: ;* Atajo para abrir [Vysor] Windows + Shift + 4
     Run, *RunAs "C:\Users\jewc2\AppData\Local\vysor\Vysor.exe"
 return
+
+
+
 
 ; Función para extraer los atajos dinámicamente del script
 MapShortcuts() {
@@ -140,17 +143,50 @@ MapShortcuts() {
             hotkey := Trim(match1)  ; Obtiene la combinación de teclas
             action := Trim(match2)  ; Obtiene la acción asociada
             if (hotkey != "" && action != "") {
-                shortcuts.Push(hotkey . " -> " . action)  ; Guarda en el array
+                ; Convierte los símbolos de teclas a nombres legibles
+                readableHotkey := hotkey
+                readableHotkey := StrReplace(readableHotkey, "^", "Ctrl+")
+                readableHotkey := StrReplace(readableHotkey, "+", "Shift+")
+                readableHotkey := StrReplace(readableHotkey, "!", "Alt+")
+                readableHotkey := StrReplace(readableHotkey, "#", "Win+")
+                
+                ; Elimina el "+" final si existe
+                if (SubStr(readableHotkey, 0) = "+")
+                    readableHotkey := SubStr(readableHotkey, 1, StrLen(readableHotkey)-1)
+                
+                shortcuts.Push([readableHotkey, action])  ; Guarda en el array
             }
         }
     }
     
-    ; Construye la salida para mostrarla
-    output := "Lista Dinámica de Atajos:`n`n"
+    ; Construye una tabla HTML para mostrar los atajos
+    html := "<html><head><style>"
+    html .= "body { font-family: Arial, sans-serif; background-color: #f0f0f0; }"
+    html .= "table { width: 90%; border-collapse: collapse; margin: 20px auto; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }"
+    html .= "th { background-color: #4CAF50; color: white; text-align: left; padding: 12px; }"
+    html .= "td { padding: 10px; border-bottom: 1px solid #ddd; }"
+    html .= "tr:hover { background-color: #f5f5f5; }"
+    html .= "h2 { text-align: center; color: #333; }"
+    html .= ".key { background-color: #f1f1f1; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; font-family: monospace; }"
+    html .= "</style></head><body>"
+    html .= "<h2>Atajos de Teclado Disponibles</h2>"
+    html .= "<table><tr><th>Atajo</th><th>Acción</th></tr>"
+    
     for index, shortcut in shortcuts {
-        output .= shortcut . "`n"
+        ; Estiliza mejor las teclas
+        styledKey := RegExReplace(shortcut[1], "([A-Za-z0-9+]+)", "<span class='key'>$1</span>")
+        html .= "<tr><td>" . styledKey . "</td><td>" . shortcut[2] . "</td></tr>"
     }
-    MsgBox, %output%  ; Muestra los atajos en un cuadro de mensaje
+    
+    html .= "</table></body></html>"
+    
+    ; Guarda el HTML en un archivo temporal
+    htmlFile := A_Temp . "\shortcuts.html"
+    FileDelete, %htmlFile%
+    FileAppend, %html%, %htmlFile%
+    
+    ; Abre el archivo HTML en el navegador predeterminado
+    Run, %htmlFile%
 }
 
 ; Llama a la función para imprimir los atajos dinámicamente con Win+M
