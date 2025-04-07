@@ -9,6 +9,29 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
+; Auto-copy script to Startup folder on load/reload
+CopyToStartup()
+
+; Función para copiar el script a la carpeta de inicio
+CopyToStartup() {
+    startupPath := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk"
+    
+    ; Copia el script actual a la carpeta de inicio
+    FileCopy, %A_ScriptFullPath%, %startupPath%, 1
+    
+    ; Si el script en ejecución no es el de desarrollo, recarga el de la carpeta de inicio
+    if (A_ScriptFullPath != startupPath) {
+        ; Intenta recargar el script de la carpeta de inicio si está en ejecución
+        DetectHiddenWindows, On
+        scriptPID := WinExist("ahk_class AutoHotkey ahk_exe AutoHotkey.exe")
+        if (scriptPID) {
+            ; Envía un mensaje WM_COMMAND con el comando de recarga (65303)
+            PostMessage, 0x111, 65303, 0, , ahk_id %scriptPID%
+        }
+    }
+    return
+}
+
 ; Variables globales
 global CURSOR_PATH := "C:\Users\jewc2\AppData\Local\Programs\cursor\Cursor.exe"
 global VSCODE_PATH := "C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
@@ -38,34 +61,37 @@ RunWarp(args := "") {
 ; Atajos de Teclado para Abrir Sitios Web
 ; ============================================
 ^!f::
-    Run, *RunAs https://platform.openai.com/api-keys
+    Run, https://platform.openai.com/api-keys
 return
 
 ^!v::
-    Run, *RunAs https://chat.openai.com/chat
-return
-^!2::
-    Run, *RunAs https://www.youtube.com/
+    Run, https://chatgpt.com/
 return
 
+^!2::
+    Run, https://www.youtube.com/
+return
 
 !g:: ;* Atajo para abrir la documentación de LangChain en el navegador
     Run, https://python.langchain.com/docs/introduction/
 return
 
 #j::
-    Run, *RunAs https://langchain-ai.github.io/langgraph/
+    Run, https://langchain-ai.github.io/langgraph/
 return
 
 +!3::
-    Run, *RunAs https://gemini.google.com/app
+    Run, https://gemini.google.com/app
 return
 
 ^!r::
-    Run, *RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc
+    Run, https://www.rappi.com.pe/tiendas/54165-rappi-market-nc
 return
-#|:: ;* Atajo para copiar el script a la carpeta de StartUp
-    FileCopy, %A_ScriptFullPath%, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk", 1
+
+
+
+#|:: ;* Atajo para copiar el script a la carpeta de StartUp y recargar
+    CopyToStartup()
     Reload  ; Recarga este script
 return
 
@@ -87,6 +113,7 @@ GetProjectRoot() {
         projectRoot := A_WorkingDir
     }
     
+    FileDelete, %A_Temp%\project_root.txt
     return projectRoot
 }
 
@@ -94,7 +121,7 @@ GetProjectRoot() {
 global PROJECT_ROOT := GetProjectRoot()
 
 ^!e:: ;* Atajo para abrir el directorio de StartUp
-    RunCursor(%PROJECT_ROOT%)
+    RunCursor(PROJECT_ROOT)
 return
 
 
@@ -111,18 +138,18 @@ return
 return
 
 #+2:: ;* Atajo para abrir el directorio de Origisong
-    RunCursor("D:\Users\Origis")
+    RunCursor("D:\Users\Originsong-1.3")
 return
 
 #t:: ;* Atajo para abrir Warp
-    Run, *RunAs "D:\Warp\warp.exe"
+    RunWarp()
 return
 
 +!4:: ;* Atajo para abrir el directorio de comandos.ahk
     RunCursor("D:\Users\autohotkey")    
 return
 
-#4:: ;* Atajo para abrir [Vysor] Windows + Shift + 4
+#4:: ;* Atajo para abrir Vysor
     Run, *RunAs "C:\Users\jewc2\AppData\Local\vysor\Vysor.exe"
 return
 
@@ -141,7 +168,9 @@ MapShortcuts() {
         line := A_LoopField
         if (RegExMatch(line, "^(.*)::(.*)$", match)) {  ; Busca el patrón de "::"
             hotkey := Trim(match1)  ; Obtiene la combinación de teclas
-            action := Trim(match2)  ; Obtiene la acción asociada
+            action := RegExReplace(Trim(match2), "return$", "")  ; Obtiene la acción asociada y quita "return" si existe
+            action := Trim(action)  ; Elimina espacios en blanco sobrantes
+            
             if (hotkey != "" && action != "") {
                 ; Convierte los símbolos de teclas a nombres legibles
                 readableHotkey := hotkey
@@ -159,34 +188,48 @@ MapShortcuts() {
         }
     }
     
-    ; Construye una tabla HTML para mostrar los atajos
-    html := "<html><head><style>"
-    html .= "body { font-family: Arial, sans-serif; background-color: #f0f0f0; }"
-    html .= "table { width: 90%; border-collapse: collapse; margin: 20px auto; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }"
-    html .= "th { background-color: #4CAF50; color: white; text-align: left; padding: 12px; }"
-    html .= "td { padding: 10px; border-bottom: 1px solid #ddd; }"
-    html .= "tr:hover { background-color: #f5f5f5; }"
-    html .= "h2 { text-align: center; color: #333; }"
-    html .= ".key { background-color: #f1f1f1; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; font-family: monospace; }"
-    html .= "</style></head><body>"
-    html .= "<h2>Atajos de Teclado Disponibles</h2>"
-    html .= "<table><tr><th>Atajo</th><th>Acción</th></tr>"
+    ; Crear array de atajos en formato JSON
+    jsonShortcuts := "["
     
-    for index, shortcut in shortcuts {
-        ; Estiliza mejor las teclas
-        styledKey := RegExReplace(shortcut[1], "([A-Za-z0-9+]+)", "<span class='key'>$1</span>")
-        html .= "<tr><td>" . styledKey . "</td><td>" . shortcut[2] . "</td></tr>"
+    For index, shortcut in shortcuts {
+        ; Escapar caracteres especiales en la descripción
+        description := RegExReplace(shortcut[2], """", "\\""")
+        description := RegExReplace(description, "\r|\n", " ")  ; Reemplazar saltos de línea por espacios
+        
+        ; Parsear las teclas
+        keyArray := StrSplit(shortcut[1], "+")
+        keysJson := ""
+        For i, key in keyArray {
+            key := Trim(key)
+            If (keysJson != "")
+                keysJson .= ","
+            keysJson .= """" . key . """"
+        }
+        
+        ; Agregar el atajo al JSON
+        jsonShortcuts .= "{"
+        jsonShortcuts .= """keys"": [" . keysJson . "],"
+        jsonShortcuts .= """description"": """ . description . """"
+        jsonShortcuts .= "}"
+        
+        ; Agregar coma si no es el último elemento
+        If (index < shortcuts.Length())
+            jsonShortcuts .= ","
     }
     
-    html .= "</table></body></html>"
+    jsonShortcuts .= "]"
     
-    ; Guarda el HTML en un archivo temporal
-    htmlFile := A_Temp . "\shortcuts.html"
-    FileDelete, %htmlFile%
-    FileAppend, %html%, %htmlFile%
+    ; Guardar JSON en un archivo
+    visualizerDir := A_ScriptDir . "\keyboard_visualizer"
+    If (!FileExist(visualizerDir))
+        FileCreateDir, %visualizerDir%
     
-    ; Abre el archivo HTML en el navegador predeterminado
-    Run, %htmlFile%
+    jsonFile := visualizerDir . "\shortcuts.json"
+    FileDelete, %jsonFile%
+    FileAppend, %jsonShortcuts%, %jsonFile%
+    
+    ; Abrir el visualizador HTML en el navegador predeterminado
+    Run, %visualizerDir%\index.html
 }
 
 ; Llama a la función para imprimir los atajos dinámicamente con Win+M

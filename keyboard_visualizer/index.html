@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Atajos de Teclado</title>
+    <style>
+        :root {
+            --gap: 8px;
+            --key-size: 50px;
+            --border-radius: 6px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .key {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 2px;
+            display: inline-block;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .ctrl {
+            background-color: #3498db;
+        }
+        
+        .shift {
+            background-color: #9b59b6;
+        }
+        
+        .alt {
+            background-color: #e67e22;
+        }
+        
+        .win {
+            background-color: #2ecc71;
+        }
+        
+        .regular {
+            background-color: #34495e;
+        }
+        
+        .keyboard-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .keyboard {
+            display: inline-flex;
+            flex-direction: column;
+            background-color: #e0e0e0;
+            padding: var(--gap);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            gap: var(--gap);
+            transform: perspective(1000px) rotateX(10deg);
+        }
+        
+        .keyboard-row {
+            display: flex;
+            gap: var(--gap);
+        }
+        
+        .keyboard-key {
+            width: var(--key-size);
+            height: var(--key-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.1s, box-shadow 0.1s;
+            user-select: none;
+        }
+        
+        .keyboard-key.wide-2 {
+            width: calc(var(--key-size) * 2 + var(--gap));
+        }
+        
+        .keyboard-key.wide-3 {
+            width: calc(var(--key-size) * 3 + var(--gap) * 2);
+        }
+        
+        .keyboard-key.wide-6 {
+            width: calc(var(--key-size) * 6 + var(--gap) * 5);
+        }
+        
+        .keyboard-key.active {
+            transform: translateY(3px);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .shortcut-description {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 24px;
+        }
+        
+        .shortcuts-list {
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .shortcuts-list h3 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .shortcuts-grid {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .shortcut-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .shortcut-keys {
+            margin-right: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .keyboard-key.active {
+            animation: pulse 0.5s;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #fadbd8;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Atajos de Teclado</h2>
+        
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <!-- Primera fila - teclas de función -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key regular" data-key="Escape">Esc</div>
+                    <div class="keyboard-key regular" data-key="F1">F1</div>
+                    <div class="keyboard-key regular" data-key="F2">F2</div>
+                    <div class="keyboard-key regular" data-key="F3">F3</div>
+                    <div class="keyboard-key regular" data-key="F4">F4</div>
+                    <div class="keyboard-key regular" data-key="F5">F5</div>
+                    <div class="keyboard-key regular" data-key="F6">F6</div>
+                    <div class="keyboard-key regular" data-key="F7">F7</div>
+                    <div class="keyboard-key regular" data-key="F8">F8</div>
+                    <div class="keyboard-key regular" data-key="F9">F9</div>
+                    <div class="keyboard-key regular" data-key="F10">F10</div>
+                    <div class="keyboard-key regular" data-key="F11">F11</div>
+                    <div class="keyboard-key regular" data-key="F12">F12</div>
+                </div>
+                
+                <!-- Segunda fila - números -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key regular" data-key="`">~`</div>
+                    <div class="keyboard-key regular" data-key="1">1</div>
+                    <div class="keyboard-key regular" data-key="2">2</div>
+                    <div class="keyboard-key regular" data-key="3">3</div>
+                    <div class="keyboard-key regular" data-key="4">4</div>
+                    <div class="keyboard-key regular" data-key="5">5</div>
+                    <div class="keyboard-key regular" data-key="6">6</div>
+                    <div class="keyboard-key regular" data-key="7">7</div>
+                    <div class="keyboard-key regular" data-key="8">8</div>
+                    <div class="keyboard-key regular" data-key="9">9</div>
+                    <div class="keyboard-key regular" data-key="0">0</div>
+                    <div class="keyboard-key regular" data-key="-">-</div>
+                    <div class="keyboard-key regular" data-key="=">=</div>
+                    <div class="keyboard-key wide-2 regular" data-key="Backspace">Back</div>
+                </div>
+                
+                <!-- Tercera fila - QWERTY -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key wide-2 regular" data-key="Tab">Tab</div>
+                    <div class="keyboard-key regular" data-key="q">Q</div>
+                    <div class="keyboard-key regular" data-key="w">W</div>
+                    <div class="keyboard-key regular" data-key="e">E</div>
+                    <div class="keyboard-key regular" data-key="r">R</div>
+                    <div class="keyboard-key regular" data-key="t">T</div>
+                    <div class="keyboard-key regular" data-key="y">Y</div>
+                    <div class="keyboard-key regular" data-key="u">U</div>
+                    <div class="keyboard-key regular" data-key="i">I</div>
+                    <div class="keyboard-key regular" data-key="o">O</div>
+                    <div class="keyboard-key regular" data-key="p">P</div>
+                    <div class="keyboard-key regular" data-key="[">[</div>
+                    <div class="keyboard-key regular" data-key="]">]</div>
+                    <div class="keyboard-key regular" data-key="\">\\</div>
+                </div>
+                
+                <!-- Cuarta fila - ASDF -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key wide-2 regular" data-key="CapsLock">Caps</div>
+                    <div class="keyboard-key regular" data-key="a">A</div>
+                    <div class="keyboard-key regular" data-key="s">S</div>
+                    <div class="keyboard-key regular" data-key="d">D</div>
+                    <div class="keyboard-key regular" data-key="f">F</div>
+                    <div class="keyboard-key regular" data-key="g">G</div>
+                    <div class="keyboard-key regular" data-key="h">H</div>
+                    <div class="keyboard-key regular" data-key="j">J</div>
+                    <div class="keyboard-key regular" data-key="k">K</div>
+                    <div class="keyboard-key regular" data-key="l">L</div>
+                    <div class="keyboard-key regular" data-key=";">;</div>
+                    <div class="keyboard-key regular" data-key="'">'</div>
+                    <div class="keyboard-key wide-2 regular" data-key="Enter">Enter</div>
+                </div>
+                
+                <!-- Quinta fila - ZXCV -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key wide-2 shift" data-key="Shift">Shift</div>
+                    <div class="keyboard-key regular" data-key="z">Z</div>
+                    <div class="keyboard-key regular" data-key="x">X</div>
+                    <div class="keyboard-key regular" data-key="c">C</div>
+                    <div class="keyboard-key regular" data-key="v">V</div>
+                    <div class="keyboard-key regular" data-key="b">B</div>
+                    <div class="keyboard-key regular" data-key="n">N</div>
+                    <div class="keyboard-key regular" data-key="m">M</div>
+                    <div class="keyboard-key regular" data-key=",">< </div>
+                    <div class="keyboard-key regular" data-key=".">.</div>
+                    <div class="keyboard-key regular" data-key="/">/ </div>
+                    <div class="keyboard-key wide-2 shift" data-key="Shift">Shift</div>
+                </div>
+                
+                <!-- Sexta fila - barra espaciadora -->
+                <div class="keyboard-row">
+                    <div class="keyboard-key ctrl" data-key="Control">Ctrl</div>
+                    <div class="keyboard-key win" data-key="Meta">Win</div>
+                    <div class="keyboard-key alt" data-key="Alt">Alt</div>
+                    <div class="keyboard-key wide-6 regular" data-key=" ">Space</div>
+                    <div class="keyboard-key alt" data-key="Alt">Alt</div>
+                    <div class="keyboard-key win" data-key="Meta">Win</div>
+                    <div class="keyboard-key regular" data-key="ContextMenu">Menu</div>
+                    <div class="keyboard-key ctrl" data-key="Control">Ctrl</div>
+                </div>
+            </div>
+            <div id="shortcut-description" class="shortcut-description"></div>
+        </div>
+        
+        <div class="shortcuts-list">
+            <h3>Atajos Disponibles - Haz clic para demostrar</h3>
+            <ul id="shortcuts-grid" class="shortcuts-grid"></ul>
+        </div>
+        
+        <div id="error-message" class="error-message">
+            No se pudieron cargar los atajos. Por favor, verifica que el archivo shortcuts.json existe y está bien formado.
+        </div>
+    </div>
+    
+    <script>
+        // Datos de atajos - fallback por si no se puede cargar el JSON
+        let shortcuts = [
+            {
+                "keys": ["Ctrl", "Alt", "f"],
+                "description": "Abrir OpenAI API Keys"
+            },
+            {
+                "keys": ["Ctrl", "Alt", "v"],
+                "description": "Abrir ChatGPT"
+            },
+            {
+                "keys": ["Ctrl", "Alt", "2"],
+                "description": "Abrir YouTube"
+            },
+            {
+                "keys": ["Alt", "g"],
+                "description": "Abrir documentación de LangChain"
+            },
+            {
+                "keys": ["Win", "j"],
+                "description": "Abrir Langgraph"
+            },
+            {
+                "keys": ["Shift", "Alt", "3"],
+                "description": "Abrir Gemini"
+            }
+        ];
+        
+        // Mapeo de teclas físicas a teclas virtuales
+        const keyMapping = {
+            'Control': '[data-key="Control"]',
+            'Shift': '[data-key="Shift"]',
+            'Alt': '[data-key="Alt"]',
+            'Meta': '[data-key="Meta"]'
+        };
+
+        // Intentar cargar el JSON desde varias ubicaciones posibles
+        function loadShortcutsFromJSON() {
+            // Posibles ubicaciones para el archivo JSON
+            const possiblePaths = [
+                'shortcuts.json',                     // Mismo directorio
+                './shortcuts.json',                   // Mismo directorio (explícito)
+                '../shortcuts.json',                  // Directorio padre
+                'keyboard_visualizer/shortcuts.json', // Subcarpeta
+                '/keyboard_visualizer/shortcuts.json' // Ruta absoluta desde la raíz del servidor
+            ];
+            
+            let loaded = false;
+            let attempts = 0;
+            
+            // Intentar cargar desde cada ruta posible
+            function tryNextPath() {
+                if (attempts >= possiblePaths.length) {
+                    console.log('Se intentaron todas las rutas, usando datos de ejemplo');
+                    generateShortcutsList(); // Usar datos de ejemplo
+                    return;
+                }
+                
+                const path = possiblePaths[attempts];
+                console.log(`Intentando cargar desde: ${path}`);
+                
+                fetch(path)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error al cargar ${path}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data && Array.isArray(data) && data.length > 0) {
+                            console.log(`JSON cargado correctamente desde ${path}:`, data);
+                            shortcuts = data;
+                            loaded = true;
+                            generateShortcutsList();
+                        } else {
+                            console.warn(`El archivo ${path} no contiene atajos válidos`);
+                            attempts++;
+                            tryNextPath();
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`Error cargando desde ${path}:`, error);
+                        attempts++;
+                        tryNextPath();
+                    });
+            }
+            
+            // Comenzar el intento con la primera ruta
+            tryNextPath();
+        }
+        
+        // Iniciar la carga de atajos
+        loadShortcutsFromJSON();
+        
+        // Si después de 3 segundos no se han cargado los atajos, usar los predeterminados
+        setTimeout(() => {
+            if (document.getElementById('shortcuts-grid').children.length === 0) {
+                console.log('Timeout: cargando atajos predeterminados');
+                generateShortcutsList();
+            }
+        }, 3000);
+        
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = message || 'Error al cargar los atajos';
+            errorElement.style.display = 'block';
+        }
+        
+        // Función para resaltar una tecla
+        function highlightKey(keySelector, active = true) {
+            const keyElements = document.querySelectorAll(keySelector);
+            keyElements.forEach(key => {
+                if (active) {
+                    key.classList.add('active');
+                } else {
+                    key.classList.remove('active');
+                }
+            });
+        }
+        
+        // Variables para el estado actual
+        let pressedKeys = [];
+        
+        // Agregar escuchadores de eventos para el teclado físico
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if (!pressedKeys.includes(key)) {
+                pressedKeys.push(key);
+            }
+            
+            // Mapeo directo entre la tecla física y la virtual
+            let keySelector = keyMapping[key];
+            if (!keySelector) {
+                keySelector = `[data-key="${key.toLowerCase()}"]`;
+            }
+            
+            highlightKey(keySelector, true);
+            checkShortcuts();
+        });
+        
+        document.addEventListener('keyup', (event) => {
+            const key = event.key;
+            pressedKeys = pressedKeys.filter(k => k !== key);
+            
+            let keySelector = keyMapping[key];
+            if (!keySelector) {
+                keySelector = `[data-key="${key.toLowerCase()}"]`;
+            }
+            
+            highlightKey(keySelector, false);
+        });
+        
+        // Función para verificar si hay atajos activos
+        function checkShortcuts() {
+            shortcuts.forEach(shortcut => {
+                const shortcutKeys = shortcut.keys.map(k => {
+                    if (k === 'Ctrl') return 'Control';
+                    if (k === 'Win') return 'Meta';
+                    return k;
+                });
+                
+                const allKeysPressed = shortcutKeys.every(key => 
+                    pressedKeys.includes(key) || 
+                    pressedKeys.includes(key.toLowerCase())
+                );
+                
+                if (allKeysPressed) {
+                    showShortcutDescription(shortcut.description);
+                }
+            });
+        }
+        
+        // Función para mostrar la descripción del atajo
+        function showShortcutDescription(description) {
+            const descElement = document.getElementById('shortcut-description');
+            descElement.textContent = description;
+            
+            // Ocultar después de 2 segundos
+            setTimeout(() => {
+                descElement.textContent = '';
+            }, 2000);
+        }
+        
+        // Función para demostrar un atajo
+        function demonstrateShortcut(shortcut) {
+            // Limpiar cualquier resaltado existente
+            document.querySelectorAll('.keyboard-key').forEach(key => {
+                key.classList.remove('active');
+            });
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < shortcut.keys.length) {
+                    const key = shortcut.keys[index];
+                    let keySelector;
+                    
+                    if (key === 'Ctrl') keySelector = '[data-key="Control"]';
+                    else if (key === 'Win') keySelector = '[data-key="Meta"]';
+                    else if (key === 'Shift') keySelector = '[data-key="Shift"]';
+                    else if (key === 'Alt') keySelector = '[data-key="Alt"]';
+                    else keySelector = `[data-key="${key.toLowerCase()}"]`;
+                    
+                    highlightKey(keySelector, true);
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    showShortcutDescription(shortcut.description);
+                    
+                    // Restablecer después de 1 segundo
+                    setTimeout(() => {
+                        document.querySelectorAll('.keyboard-key.active').forEach(key => {
+                            key.classList.remove('active');
+                        });
+                    }, 1000);
+                }
+            }, 300);
+        }
+        
+        // Generar la lista de atajos
+        function generateShortcutsList() {
+            const grid = document.getElementById('shortcuts-grid');
+            grid.innerHTML = ''; // Limpiar lista existente
+            
+            shortcuts.forEach((shortcut, index) => {
+                const li = document.createElement('li');
+                li.className = 'shortcut-item';
+                
+                // Crear elementos coloreados para cada tecla
+                const keysContainer = document.createElement('div');
+                keysContainer.className = 'shortcut-keys';
+                
+                shortcut.keys.forEach((key, index) => {
+                    const keySpan = document.createElement('span');
+                    keySpan.textContent = key;
+                    keySpan.className = 'key';
+                    
+                    // Asignar clase de color según el tipo de tecla
+                    if (key === 'Ctrl') {
+                        keySpan.classList.add('ctrl');
+                    } else if (key === 'Shift') {
+                        keySpan.classList.add('shift');
+                    } else if (key === 'Alt') {
+                        keySpan.classList.add('alt');
+                    } else if (key === 'Win') {
+                        keySpan.classList.add('win');
+                    } else {
+                        keySpan.classList.add('regular');
+                    }
+                    
+                    keysContainer.appendChild(keySpan);
+                    
+                    // Agregar signo + entre teclas
+                    if (index < shortcut.keys.length - 1) {
+                        const plus = document.createTextNode(' + ');
+                        keysContainer.appendChild(plus);
+                    }
+                });
+                
+                const description = document.createElement('span');
+                description.textContent = shortcut.description;
+                
+                li.appendChild(keysContainer);
+                li.appendChild(description);
+                li.addEventListener('click', () => demonstrateShortcut(shortcut));
+                grid.appendChild(li);
+            });
+            
+            // Ocultar el mensaje de error si hay atajos
+            if (shortcuts.length > 0) {
+                document.getElementById('error-message').style.display = 'none';
+            }
+        }
+        
+        // Agregar eventos de clic a las teclas virtuales
+        document.querySelectorAll('.keyboard-key').forEach(key => {
+            key.addEventListener('click', () => {
+                key.classList.add('active');
+                setTimeout(() => {
+                    key.classList.remove('active');
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html> 
