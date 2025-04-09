@@ -1,19 +1,20 @@
+# Dependencies
 node_modules/
-D:\Users\autohotkey\keyboard_visualizer\node_modules
+/node_modules
 npm-debug.log
 yarn-error.log
 
 # Archivos de entorno
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
 # Archivos de compilación
 dist/
+/dist-vite
 build/
 out/
+/src-tauri/target
 
 # Archivos de caché
 .cache/
