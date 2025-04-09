@@ -19,6 +19,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --gap: 8px;
+  --key-size: 50px;
+  --border-radius: 6px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .container {
@@ -113,4 +126,169 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.key {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  margin: 0 2px;
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+}
+
+.ctrl {
+  background-color: #3498db;
+}
+
+.shift {
+  background-color: #9b59b6;
+}
+
+.alt {
+  background-color: #e67e22;
+}
+
+.win {
+  background-color: #2ecc71;
+}
+
+.regular {
+  background-color: #34495e;
+}
+
+.keyboard-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: #e0e0e0;
+  padding: var(--gap);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  gap: var(--gap);
+  transform: perspective(1000px) rotateX(10deg);
+}
+
+.keyboard-row {
+  display: flex;
+  gap: var(--gap);
+}
+
+.keyboard-key {
+  width: var(--key-size);
+  height: var(--key-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  color: white;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s, box-shadow 0.1s;
+  user-select: none;
+}
+
+.keyboard-key.wide-2 {
+  width: calc(var(--key-size) * 2 + var(--gap));
+}
+
+.keyboard-key.wide-3 {
+  width: calc(var(--key-size) * 3 + var(--gap) * 2);
+}
+
+.keyboard-key.wide-6 {
+  width: calc(var(--key-size) * 6 + var(--gap) * 5);
+}
+
+.keyboard-key.active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.shortcut-description {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  min-height: 24px;
+}
+
+.shortcuts-list {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.shortcuts-list h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.shortcuts-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.shortcut-item:hover {
+  background-color: #f0f0f0;
+}
+
+.shortcut-keys {
+  margin-right: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.keyboard-key.active {
+  animation: pulse 0.5s;
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #fadbd8;
+  border-radius: 5px;
+  display: none;
 }
