@@ -1,0 +1,47 @@
+node_modules/
+D:\Users\autohotkey\keyboard_visualizer\node_modules
+npm-debug.log
+yarn-error.log
+
+# Archivos de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de compilación
+dist/
+build/
+out/
+
+# Archivos de caché
+.cache/
+.parcel-cache/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de registro
+*.log
+logs/
+
+# Archivos temporales
+temp/
+tmp/
+.tmp/
+
+# Archivos específicos de Electron
+electron-builder.yml
+
+# Ignorar problemas de fin de línea (LF/CRLF)
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf

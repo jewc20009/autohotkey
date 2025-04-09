@@ -131,65 +131,118 @@ return
 
 ; Función para extraer los atajos dinámicamente del script
 MapShortcuts() {
-    scriptFile := A_ScriptFullPath  ; Obtiene la ruta completa del archivo de script actual
-    shortcuts := []  ; Crea un array vacío para almacenar los atajos
+    scriptFile := A_ScriptFullPath
+    shortcuts := []
     FileRead, scriptContent, %scriptFile%
     
-    ; Busca líneas que definan atajos (: o ::)
+    ; Busca líneas que definan atajos (::)
     Loop, Parse, scriptContent, `n, `r
     {
         line := A_LoopField
-        if (RegExMatch(line, "^(.*)::(.*)$", match)) {  ; Busca el patrón de "::"
-            hotkey := Trim(match1)  ; Obtiene la combinación de teclas
-            action := Trim(match2)  ; Obtiene la acción asociada
-            if (hotkey != "" && action != "") {
-                ; Convierte los símbolos de teclas a nombres legibles
-                readableHotkey := hotkey
-                readableHotkey := StrReplace(readableHotkey, "^", "Ctrl+")
-                readableHotkey := StrReplace(readableHotkey, "+", "Shift+")
-                readableHotkey := StrReplace(readableHotkey, "!", "Alt+")
-                readableHotkey := StrReplace(readableHotkey, "#", "Win+")
+        ; Ignora líneas de comentarios y líneas vacías
+        if (RegExMatch(line, "^\s*;") || line = "" || !RegExMatch(line, "::"))
+            continue
+            
+        ; Busca patrones de atajos válidos y extrae la descripción de los comentarios
+        if (RegExMatch(line, "^([#!+^]*[a-zA-Z0-9|]*)::.*?;\*\s*(.+?)\s*$", match)) {
+            hotkey := Trim(match1)
+            description := Trim(match2)
+            
+            if (hotkey != "" && description != "") {
+                ; Parsea la combinación de teclas
+                keys := []
                 
-                ; Elimina el "+" final si existe
-                if (SubStr(readableHotkey, 0) = "+")
-                    readableHotkey := SubStr(readableHotkey, 1, StrLen(readableHotkey)-1)
+                ; Procesa los modificadores en el orden correcto
+                if (InStr(hotkey, "^"))
+                    keys.Push("Ctrl")
+                if (InStr(hotkey, "+"))
+                    keys.Push("Shift")
+                if (InStr(hotkey, "!"))
+                    keys.Push("Alt")
+                if (InStr(hotkey, "#"))
+                    keys.Push("Win")
+                    
+                ; Obtiene la tecla principal (última letra/número después de los modificadores)
+                RegExMatch(hotkey, "[a-zA-Z0-9|]$", mainKey)
+                if (mainKey) {
+                    StringUpper, mainKey, mainKey
+                    keys.Push(mainKey)
+                }
                 
-                shortcuts.Push([readableHotkey, action])  ; Guarda en el array
+                ; Solo agrega el atajo si tiene teclas válidas y una descripción
+                if (keys.Length() > 0 && description != "")
+                    shortcuts.Push({"keys": keys, "description": description})
             }
         }
     }
     
-    ; Construye una tabla HTML para mostrar los atajos
-    html := "<html><head><style>"
-    html .= "body { font-family: Arial, sans-serif; background-color: #f0f0f0; }"
-    html .= "table { width: 90%; border-collapse: collapse; margin: 20px auto; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }"
-    html .= "th { background-color: #4CAF50; color: white; text-align: left; padding: 12px; }"
-    html .= "td { padding: 10px; border-bottom: 1px solid #ddd; }"
-    html .= "tr:hover { background-color: #f5f5f5; }"
-    html .= "h2 { text-align: center; color: #333; }"
-    html .= ".key { background-color: #f1f1f1; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; font-family: monospace; }"
-    html .= "</style></head><body>"
-    html .= "<h2>Atajos de Teclado Disponibles</h2>"
-    html .= "<table><tr><th>Atajo</th><th>Acción</th></tr>"
-    
+    ; Crear JSON
+    jsonStr := "["
     for index, shortcut in shortcuts {
-        ; Estiliza mejor las teclas
-        styledKey := RegExReplace(shortcut[1], "([A-Za-z0-9+]+)", "<span class='key'>$1</span>")
-        html .= "<tr><td>" . styledKey . "</td><td>" . shortcut[2] . "</td></tr>"
+        if (index > 1)
+            jsonStr .= ","
+            
+        ; Crear array de teclas
+        keysJson := "["
+        for i, key in shortcut.keys {
+            if (i > 1)
+                keysJson .= ","
+            keysJson .= """" . key . """"
+        }
+        keysJson .= "]"
+        
+        ; Agregar el objeto de atajo
+        jsonStr .= "{"
+        jsonStr .= """keys"":" . keysJson . ","
+        jsonStr .= """description"":""" . shortcut.description . """"
+        jsonStr .= "}"
+    }
+    jsonStr .= "]"
+    
+    ; Guardar JSON en un archivo
+    visualizerDir := A_ScriptDir . "\keyboard_visualizer"
+    if (!FileExist(visualizerDir))
+        FileCreateDir, %visualizerDir%
+    
+    jsonFile := visualizerDir . "\shortcuts.json"
+    FileDelete, %jsonFile%
+    FileAppend, %jsonStr%, %jsonFile%, UTF-8
+    
+    ; Intentar abrir diferentes versiones en orden de prioridad
+    
+    ; 1. Primero - Intenta abrir el visualizador nativo de AHK (más rápido)
+    ahkVisualizer := visualizerDir . "\visualizer.ahk"
+    if (FileExist(ahkVisualizer)) {
+        Run, %ahkVisualizer%
+        return
     }
     
-    html .= "</table></body></html>"
+    ; 2. Segundo - Intenta abrir el visualizador nativo compilado
+    ahkVisualizer := visualizerDir . "\visualizer.exe"
+    if (FileExist(ahkVisualizer)) {
+        Run, %ahkVisualizer%
+        return
+    }
     
-    ; Guarda el HTML en un archivo temporal
-    htmlFile := A_Temp . "\shortcuts.html"
-    FileDelete, %htmlFile%
-    FileAppend, %html%, %htmlFile%
+    ; 3. Tercero - Intenta abrir la versión compilada de Tauri
+    tauriPath := visualizerDir . "\keyboard-visualizer.exe"
+    if (FileExist(tauriPath)) {
+        Run, %tauriPath%
+        return
+    }
     
-    ; Abre el archivo HTML en el navegador predeterminado
-    Run, %htmlFile%
+    ; 4. Cuarto - Intenta usar Electron si está instalado
+    electronPath := visualizerDir . "\node_modules\.bin\electron.cmd"
+    if (FileExist(electronPath)) {
+        Run, %ComSpec% /c cd "%visualizerDir%" && npm start, , Hide
+        return
+    }
+    
+    ; 5. Quinto - Usa el navegador como última opción
+    Run, %visualizerDir%\index.html
 }
 
-; Llama a la función para imprimir los atajos dinámicamente con Win+M
+; Llama a la función para mapear los atajos dinámicamente con Win+M
 #m::
     MapShortcuts()
 return

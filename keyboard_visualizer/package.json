@@ -1,0 +1,40 @@
+{
+  "name": "keyboard-shortcuts-visualizer",
+  "version": "1.0.0",
+  "description": "Visualizador de atajos de teclado",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "build": "electron-builder --win --portable"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.6.4",
+    "@tauri-apps/cli": "^1.5.0"
+  },
+  "build": {
+    "appId": "com.keyboard.visualizer",
+    "win": {
+      "target": "portable",
+      "icon": "icon.ico"
+    },
+    "portable": {
+      "splashImage": "icon.ico"
+    },
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}"
+    ]
+  }
+}
