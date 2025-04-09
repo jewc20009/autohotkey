@@ -345,6 +345,7 @@
             'Meta': '[data-key="Meta"]'
         };
 
+<<<<<<< HEAD
         // Cargar atajos desde el archivo JSON local
         async function loadShortcutsFromJSON() {
             try {
@@ -367,6 +368,73 @@
 
         // Iniciar la carga de atajos
         document.addEventListener('DOMContentLoaded', loadShortcutsFromJSON);
+=======
+        // Intentar cargar el JSON desde varias ubicaciones posibles
+        function loadShortcutsFromJSON() {
+            // Posibles ubicaciones para el archivo JSON
+            const possiblePaths = [
+                'shortcuts.json',                     // Mismo directorio
+                './shortcuts.json',                   // Mismo directorio (explícito)
+                '../shortcuts.json',                  // Directorio padre
+                'keyboard_visualizer/shortcuts.json', // Subcarpeta
+                '/keyboard_visualizer/shortcuts.json' // Ruta absoluta desde la raíz del servidor
+            ];
+            
+            let loaded = false;
+            let attempts = 0;
+            
+            // Intentar cargar desde cada ruta posible
+            function tryNextPath() {
+                if (attempts >= possiblePaths.length) {
+                    console.log('Se intentaron todas las rutas, usando datos de ejemplo');
+                    generateShortcutsList(); // Usar datos de ejemplo
+                    return;
+                }
+                
+                const path = possiblePaths[attempts];
+                console.log(`Intentando cargar desde: ${path}`);
+                
+                fetch(path)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error al cargar ${path}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data && Array.isArray(data) && data.length > 0) {
+                            console.log(`JSON cargado correctamente desde ${path}:`, data);
+                            shortcuts = data;
+                            loaded = true;
+                            generateShortcutsList();
+                        } else {
+                            console.warn(`El archivo ${path} no contiene atajos válidos`);
+                            attempts++;
+                            tryNextPath();
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`Error cargando desde ${path}:`, error);
+                        attempts++;
+                        tryNextPath();
+                    });
+            }
+            
+            // Comenzar el intento con la primera ruta
+            tryNextPath();
+        }
+        
+        // Iniciar la carga de atajos
+        loadShortcutsFromJSON();
+        
+        // Si después de 3 segundos no se han cargado los atajos, usar los predeterminados
+        setTimeout(() => {
+            if (document.getElementById('shortcuts-grid').children.length === 0) {
+                console.log('Timeout: cargando atajos predeterminados');
+                generateShortcutsList();
+            }
+        }, 3000);
+>>>>>>> b83b21420f5fb5192e5bb26aa721b124156dce4b
         
         function showError(message) {
             const errorElement = document.getElementById('error-message');
