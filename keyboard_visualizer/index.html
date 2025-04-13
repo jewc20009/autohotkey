@@ -345,7 +345,6 @@
             'Meta': '[data-key="Meta"]'
         };
 
-<<<<<<< HEAD
         // Cargar atajos desde el archivo JSON local
         async function loadShortcutsFromJSON() {
             try {
@@ -368,7 +367,7 @@
 
         // Iniciar la carga de atajos
         document.addEventListener('DOMContentLoaded', loadShortcutsFromJSON);
-=======
+
         // Intentar cargar el JSON desde varias ubicaciones posibles
         function loadShortcutsFromJSON() {
             // Posibles ubicaciones para el archivo JSON
@@ -434,8 +433,7 @@
                 generateShortcutsList();
             }
         }, 3000);
->>>>>>> b83b21420f5fb5192e5bb26aa721b124156dce4b
-        
+            
         function showError(message) {
             const errorElement = document.getElementById('error-message');
             errorElement.textContent = message || 'Error al cargar los atajos';

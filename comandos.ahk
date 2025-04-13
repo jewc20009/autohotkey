@@ -65,8 +65,7 @@ RunWarp(args := "") {
 return
 
 ^!v::
-    Run, https://chatgpt.com/
-return
+    Run, https://chatgpt.com
 
 ^!2::
     Run, https://www.youtube.com/
@@ -166,35 +165,20 @@ MapShortcuts() {
     Loop, Parse, scriptContent, `n, `r
     {
         line := A_LoopField
-<<<<<<< HEAD
         ; Ignora líneas de comentarios y líneas vacías
-        if (RegExMatch(line, "^\s*;") || line = "" || !RegExMatch(line, "::"))
+        if (RegExMatch(line, "^\s*;") || line = "")
             continue
             
-        ; Busca patrones de atajos válidos y extrae la descripción de los comentarios
-        if (RegExMatch(line, "^([#!+^]*[a-zA-Z0-9|]*)::.*?;\*\s*(.+?)\s*$", match)) {
+        ; Busca patrones de atajos válidos
+        if (RegExMatch(line, "^([#!+^]*[a-zA-Z0-9|]*)::(.*)$", match)) {
             hotkey := Trim(match1)
-            description := Trim(match2)
+            description := RegExReplace(match2, "^[\s;*]*(.+?)[\s;*]*$", "$1") ; Limpia la descripción
             
             if (hotkey != "" && description != "") {
                 ; Parsea la combinación de teclas
                 keys := []
-=======
-        if (RegExMatch(line, "^(.*)::(.*)$", match)) {  ; Busca el patrón de "::"
-            hotkey := Trim(match1)  ; Obtiene la combinación de teclas
-            action := RegExReplace(Trim(match2), "return$", "")  ; Obtiene la acción asociada y quita "return" si existe
-            action := Trim(action)  ; Elimina espacios en blanco sobrantes
-            
-            if (hotkey != "" && action != "") {
-                ; Convierte los símbolos de teclas a nombres legibles
-                readableHotkey := hotkey
-                readableHotkey := StrReplace(readableHotkey, "^", "Ctrl+")
-                readableHotkey := StrReplace(readableHotkey, "+", "Shift+")
-                readableHotkey := StrReplace(readableHotkey, "!", "Alt+")
-                readableHotkey := StrReplace(readableHotkey, "#", "Win+")
->>>>>>> b83b21420f5fb5192e5bb26aa721b124156dce4b
                 
-                ; Procesa los modificadores en el orden correcto
+                ; Procesa los modificadores
                 if (InStr(hotkey, "^"))
                     keys.Push("Ctrl")
                 if (InStr(hotkey, "+"))
@@ -206,19 +190,14 @@ MapShortcuts() {
                     
                 ; Obtiene la tecla principal (última letra/número después de los modificadores)
                 RegExMatch(hotkey, "[a-zA-Z0-9|]$", mainKey)
-                if (mainKey) {
-                    StringUpper, mainKey, mainKey
-                    keys.Push(mainKey)
-                }
+                if (mainKey)
+                    keys.Push(Format("{:U}", mainKey))
                 
-                ; Solo agrega el atajo si tiene teclas válidas y una descripción
-                if (keys.Length() > 0 && description != "")
-                    shortcuts.Push({"keys": keys, "description": description})
+                shortcuts.Push({"keys": keys, "description": description})
             }
         }
     }
     
-<<<<<<< HEAD
     ; Crear JSON
     jsonStr := "["
     for index, shortcut in shortcuts {
@@ -251,84 +230,11 @@ MapShortcuts() {
     FileDelete, %jsonFile%
     FileAppend, %jsonStr%, %jsonFile%, UTF-8
     
-    ; Intentar abrir diferentes versiones en orden de prioridad
-    
-    ; 1. Primero - Intenta abrir el visualizador nativo de AHK (más rápido)
-    ahkVisualizer := visualizerDir . "\visualizer.ahk"
-    if (FileExist(ahkVisualizer)) {
-        Run, %ahkVisualizer%
-        return
-    }
-    
-    ; 2. Segundo - Intenta abrir el visualizador nativo compilado
-    ahkVisualizer := visualizerDir . "\visualizer.exe"
-    if (FileExist(ahkVisualizer)) {
-        Run, %ahkVisualizer%
-        return
-    }
-    
-    ; 3. Tercero - Intenta abrir la versión compilada de Tauri
-    tauriPath := visualizerDir . "\keyboard-visualizer.exe"
-    if (FileExist(tauriPath)) {
-        Run, %tauriPath%
-        return
-    }
-    
-    ; 4. Cuarto - Intenta usar Electron si está instalado
-    electronPath := visualizerDir . "\node_modules\.bin\electron.cmd"
-    if (FileExist(electronPath)) {
-        Run, %ComSpec% /c cd "%visualizerDir%" && npm start, , Hide
-        return
-    }
-    
-    ; 5. Quinto - Usa el navegador como última opción
-=======
-    ; Crear array de atajos en formato JSON
-    jsonShortcuts := "["
-    
-    For index, shortcut in shortcuts {
-        ; Escapar caracteres especiales en la descripción
-        description := RegExReplace(shortcut[2], """", "\\""")
-        description := RegExReplace(description, "\r|\n", " ")  ; Reemplazar saltos de línea por espacios
-        
-        ; Parsear las teclas
-        keyArray := StrSplit(shortcut[1], "+")
-        keysJson := ""
-        For i, key in keyArray {
-            key := Trim(key)
-            If (keysJson != "")
-                keysJson .= ","
-            keysJson .= """" . key . """"
-        }
-        
-        ; Agregar el atajo al JSON
-        jsonShortcuts .= "{"
-        jsonShortcuts .= """keys"": [" . keysJson . "],"
-        jsonShortcuts .= """description"": """ . description . """"
-        jsonShortcuts .= "}"
-        
-        ; Agregar coma si no es el último elemento
-        If (index < shortcuts.Length())
-            jsonShortcuts .= ","
-    }
-    
-    jsonShortcuts .= "]"
-    
-    ; Guardar JSON en un archivo
-    visualizerDir := A_ScriptDir . "\keyboard_visualizer"
-    If (!FileExist(visualizerDir))
-        FileCreateDir, %visualizerDir%
-    
-    jsonFile := visualizerDir . "\shortcuts.json"
-    FileDelete, %jsonFile%
-    FileAppend, %jsonShortcuts%, %jsonFile%
-    
-    ; Abrir el visualizador HTML en el navegador predeterminado
->>>>>>> b83b21420f5fb5192e5bb26aa721b124156dce4b
+    ; Abrir el visualizador HTML
     Run, %visualizerDir%\index.html
 }
 
-; Llama a la función para mapear los atajos dinámicamente con Win+M
+; Llama a la función para imprimir los atajos dinámicamente con Win+M
 #m::
     MapShortcuts()
 return
