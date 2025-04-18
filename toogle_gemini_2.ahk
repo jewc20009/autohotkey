@@ -97,6 +97,18 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
     )
 }
 
+; --- Atajo para Gemini PWA (usando TogglePWA) ---
+^!d:: ; Ctrl+Alt+D
+{
+    TogglePWA(
+        "ChatGPT",                                       ; 1. WindowTitle
+        "cadlkienfkclaiaibeoongdcgmdikeeg",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
 ; --- Ejemplo: Atajo para Notepad (usando ToggleApp) ---
 +!r:: ;* Shift+Alt+R
 {
@@ -115,6 +127,10 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
         "warp.exe"
     )
 }
+
+
+
+
 
 #y:: ; Atajo para ejecutar turbo2.bat en modo administrador
 {
