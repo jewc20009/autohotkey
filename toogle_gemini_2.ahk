@@ -93,6 +93,18 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
     )
 }
 
+^!9:: ; Ctrl+Alt+G
+{
+    TogglePWA(
+        "pgAdmin",                                       ; 1. WindowTitle
+        "mmcjlcggalaplmfidacllgaceebonibm",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+
 ; --- Atajo para Gemini PWA (usando TogglePWA) ---
 ^!d:: ; Ctrl+Alt+D
 {
@@ -104,6 +116,7 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
         "msedge.exe"                                    ; 5. BrowserExeName
     )
 }
+
 
 ; --- Ejemplo: Atajo para Notepad (usando ToggleApp) ---
 +!r:: ;* Shift+Alt+R
