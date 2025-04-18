@@ -4,10 +4,6 @@
 
 
 
-#|:: { ;* Atajo para copiar el script a la carpeta de StartUp y recargarr
-    Reload  ; Recarga este script
-}
-
 ; ================================================================
 ; Función Reutilizable "TogglePWA" (PARA PWAs - sin cambios)
 ; ================================================================
@@ -183,3 +179,9 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 {
     Run("*RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc")
 }
+
+#|::
+{
+    Reload()
+}
+
