@@ -2,36 +2,9 @@
 
 #Requires AutoHotkey v2.0
 
-; Auto-copy script to Startup folder on load/reload
-CopyToStartup()
-
-; Función para copiar el script a la carpeta de inicio
-CopyToStartup() {
-    startupPath := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\comandos.ahk"
-    
-    ; Copia el script actual a la carpeta de inicio
-    try {
-        FileCopy(A_ScriptFullPath, startupPath, true)  ; true es para sobrescribir
-    } catch Error as e {
-        MsgBox("Error al copiar el archivo: " . e.Message)
-        return
-    }
-    
-    ; Si el script en ejecución no es el de desarrollo, recarga el de la carpeta de inicio
-    if (A_ScriptFullPath != startupPath) {
-        ; Intenta recargar el script de la carpeta de inicio si está en ejecución
-        DetectHiddenWindows(true)
-        scriptPID := WinExist("ahk_class AutoHotkey ahk_exe AutoHotkey.exe")
-        if (scriptPID) {
-            ; Envía un mensaje WM_COMMAND con el comando de recarga (65303)
-            PostMessage(0x111, 65303, 0, , "ahk_id " scriptPID)
-        }
-    }
-}
 
 
-#|:: { ;* Atajo para copiar el script a la carpeta de StartUp y recargar
-    CopyToStartup()
+#|:: { ;* Atajo para copiar el script a la carpeta de StartUp y recargarr
     Reload  ; Recarga este script
 }
 
@@ -113,7 +86,7 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 ; ================================================================
 
 ; --- Atajo para Gemini PWA (usando TogglePWA) ---
-^!g:: ; Ctrl+Alt+G
+^!s:: ; Ctrl+Alt+G
 {
     TogglePWA(
         "Gemini",                                       ; 1. WindowTitle
@@ -129,7 +102,7 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 {
     ToggleApp(
         "Obsidian",                                ; 1. WindowTitle (o "Notepad" si tu sistema está en inglés) ¡VERIFICAR!
-        "C:\Users\jewc2\AppData\Local\Programs\Obsidian\Obsidian.exe",              ; 2. AppExePath (Ruta estándar, usualmente correcta)
+        "C:\Users\jewc2\AppData\Local\Programs\Obsidian\Obsidian.exe",              ; 2. AppExePath (Ruta tándar, usualmente correcta)
         "Obsidian.exe"                                   ; 3. AppExeName
     )
 }
@@ -137,7 +110,7 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 #t:: ;
 {
     ToggleApp(
-        "Warp Terminal",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
+        "Warp",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
         "D:\Warp\warp.exe",
         "warp.exe"
     )
