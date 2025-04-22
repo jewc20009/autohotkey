@@ -1,0 +1,122 @@
+﻿[
+    {
+        "hotkey": "^!s",
+        "readable": "Ctrl+Alt+S",
+        "description": "================================================================ Definición de Atajos de Teclado (Hotkeys) ================================================================ --- Atajo para Gemini PWA (usando TogglePWA) ---",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!9",
+        "readable": "Ctrl+Alt+9",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!d",
+        "readable": "Ctrl+Alt+D",
+        "description": "--- Atajo para Gemini PWA (usando TogglePWA) ---",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!t",
+        "readable": "Ctrl+Alt+T",
+        "description": "Atajo para abrir WebUI usando TogglePWA",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^#!x",
+        "readable": "Ctrl+Win+Alt+X",
+        "description": "Atajo para abrir WebUI usando TogglePWA",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "+!r",
+        "readable": "Shift+Alt+R",
+        "description": "--- Ejemplo: Atajo para Notepad (usando ToggleApp) ---",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#t",
+        "readable": "Win+T",
+        "description": "Abre Obsidian con argumentos",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!y",
+        "readable": "Ctrl+Alt+Y",
+        "description": "Atajo para YouTube Music (usando ToggleApp)",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#u",
+        "readable": "Win+U",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#o",
+        "readable": "Win+O",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#y",
+        "readable": "Win+Y",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!f",
+        "readable": "Ctrl+Alt+F",
+        "description": "} ============================================ Atajos de Teclado para Abrir Sitios Web ============================================",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!v",
+        "readable": "Ctrl+Alt+V",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!2",
+        "readable": "Ctrl+Alt+2",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "!g",
+        "readable": "Alt+G",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#j",
+        "readable": "Win+J",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "+!3",
+        "readable": "Shift+Alt+3",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!r",
+        "readable": "Ctrl+Alt+R",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "#|",
+        "readable": "Win+|",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!h",
+        "readable": "Ctrl+Alt+H",
+        "description": "------------------------------------------------------------ Hotkey:  Ctrl + Alt + H Genera/actualiza «hotkeys.json» en la carpeta del script y muestra el JSON resultante en un MsgBox.| ------------------------------------------------------------",
+        "action": "Acción personalizada"
+    }
+]
