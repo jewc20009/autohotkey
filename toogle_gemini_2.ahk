@@ -103,6 +103,17 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
         "msedge.exe"                                    ; 5. BrowserExeName
     )
 }
+^!d:: ; Ctrl+Alt+G
+{
+    TogglePWA(
+        "Gemini1-Gemini",                                       ; 1. WindowTitle
+        "gbpghmjlagojpokaelpobjahbmcjdcen",             ; 2. AppID (Edge PWA)
+        "C:\Users\jewc2\AppData\Local\Google\Chrome Dev\Application\chrome.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "chrome.exe"                                    ; 5. BrowserExeName
+    )
+}
+
 
 ^!9:: ; Ctrl+Alt+G
 {
@@ -117,11 +128,22 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 
 
 ; --- Atajo para Gemini PWA (usando TogglePWA) ---
-^!d:: ; Ctrl+Alt+D
+^!f:: ; Ctrl+Alt+D
 {
     TogglePWA(
         "ChatGPT",                                       ; 1. WindowTitle
         "cadlkienfkclaiaibeoongdcgmdikeeg",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+; --- Atajo para Gemini PWA (usando TogglePWA) ---
+^+g:: ; ctrl+shift+G
+{
+    TogglePWA(
+        "GitHub",                                       ; 1. WindowTitle
+        "mjoklplbddabcmpepnokjaffbmgbkkgg",             ; 2. AppID (Edge PWA)
         "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
         "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
         "msedge.exe"                                    ; 5. BrowserExeName
@@ -174,7 +196,94 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
         Run('"' . ObsidianPath . '" ' . ObsidianArgs)
     }
 }
+; ===============================================================
+; Ctrl+Alt+A → Abre o alterna la ventana de Cursor IDE
+; ===============================================================
+; ------------------------------------------------------------
+; Atajo   : Ctrl + Alt + A
+; Función :  
+;   1. Si Cursor no está abierto → lo inicia con el directorio deseado.  
+;   2. Si la ventana está activa → la minimiza.  
+;   3. Si la ventana existe en segundo plano → la enfoca.  
+; Nota    : Siempre se pasa el directorio «ProyectoDir» para que Cursor
+;           no reabra la última carpeta usada.
+; ------------------------------------------------------------
+;----------------------------------------------------------
+; Función: CursorToggle(Dir)
+; Descripción: Alterna la ventana de Cursor usando el identificador de proceso
+;----------------------------------------------------------
+CursorToggle(Dir) {
+    static CursorPath := "C:\Users\jewc2\AppData\Local\Programs\cursor\cursor.exe"
+    
+    ; Verificar si el directorio existe
+    if !DirExist(Dir) {
+        MsgBox("El directorio no existe:`n" . Dir, "Error", 16)
+        return
+    }
+    
+    ; Buscar la ventana de Cursor por su proceso
+    hwnd := WinExist("ahk_exe cursor.exe")
 
+    if (hwnd) {
+        if WinActive("ahk_id " . hwnd) {
+            WinMinimize("ahk_id " . hwnd)
+        } else {
+            WinActivate("ahk_id " . hwnd)
+        }
+    } else {
+        ; Si no existe, abrir Cursor en el directorio especificado
+        if DirExist(Dir) {
+            Run('"' . CursorPath . '" "' . Dir . '"', Dir)
+        }
+    }
+}
+
+;----------------------------------------------------------
+; Función: OpenCursor(Dir)
+; Descripción: Abre Cursor en el directorio especificado
+;----------------------------------------------------------
+OpenCursor(Dir) {
+    static CursorPath := "C:\Users\jewc2\AppData\Local\Programs\cursor\cursor.exe"
+    
+    ; Verificar si el directorio existe
+    if !DirExist(Dir) {
+        MsgBox("El directorio no existe:`n" . Dir, "Error", 16)
+        return
+    }
+    
+    ; Abrir Cursor en el directorio especificado
+    Run('"' . CursorPath . '" "' . Dir . '"', Dir)
+}
+
+;--- Atajos ------------------------------------------------
+^!a::
+{
+    OpenCursor("D:\Users\autohotkey")
+    CursorToggle("D:\Users\autohotkey")        ; Ctrl+Alt+A
+}
+^!w::
+{
+    OpenCursor("D:\Users\whatsapp_flask")
+    CursorToggle("D:\Users\whatsapp_flask")
+}
+^!e::
+{
+    OpenCursor("D:\Users\once-ui-design-for-nextjs")
+    CursorToggle("D:\Users\once-ui-design-for-nextjs")
+}
+!+s:: ; Ctrl+Shift+E
+{
+    OpenCursor("D:\Users\Originsong-1.3")
+    CursorToggle("D:\Users\Originsong-1.3")
+}
+!+d:: ; Ctrl+Shift+E
+{
+    OpenCursor("D:\Scripts")
+    CursorToggle("D:\Scripts")
+}
+
+; Bueno, acá debería haber una función que básicamente mapee eh el atajo y hacia dónde me está llevando, ¿okay?
+   
 #t:: ;
 {
     ToggleApp(
@@ -210,6 +319,14 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
         "C:\Program Files\WindowsApps\5319275A.51895FA4EA97F_2.2516.2.0_x64__cv1g1gvanyjgm\WhatsApp.exe",
         "WhatsApp.exe"
     )
+} 
+^#3:: ;
+{
+    ToggleApp(
+        "VYSOR",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
+        "C:\Users\jewc2\AppData\Local\vysor\Vysor.exe",
+        "Vysor.exe"
+    )
 }
 
 #y:: ; Atajo para ejecutar turbo2.bat en modo administrador
@@ -229,10 +346,7 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 ; ============================================
 ; Atajos de Teclado para Abrir Sitios Web
 ; ============================================
-^!f::
-{
-    Run("*RunAs https://platform.openai.com/api-keys")
-}
+
 
 ^!v::
 {
@@ -242,6 +356,21 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
 ^!2::
 {
     Run("*RunAs https://www.youtube.com/")
+}
+
+^!3::
+{
+    Run("*RunAs https://notebooklm.google.com/?_gl=1*179eob1*_ga*MTQ0MzYzMzg4Mi4xNzQ1MTE4NjEw*_ga_W0LDH41ZCB*MTc0NTMxODg1OS4zLjAuMTc0NTMxODg1OS42MC4wLjA.")
+}
+
+^!4::
+{
+    Run("*RunAs https://colab.research.google.com/#create=true")
+}
+
+^!#r::
+{
+    Run("*RunAs https://www.pedidosya.com.pe/")
 }
 
 !g:: ;* Atajo para abrir la documentación de LangChain en el navegador
@@ -259,10 +388,31 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
     Run("*RunAs https://gemini.google.com/app")
 }
 
-^!r::
+^+!r::
 {
     Run("*RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc")
 }
+
+
+
+
+^+1:: SendInput(".\venv\Scripts\activate")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #|::
 {

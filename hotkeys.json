@@ -6,14 +6,26 @@
         "action": "Acción personalizada"
     },
     {
+        "hotkey": "^!d",
+        "readable": "Ctrl+Alt+D",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
         "hotkey": "^!9",
         "readable": "Ctrl+Alt+9",
         "description": "",
         "action": "Acción personalizada"
     },
     {
-        "hotkey": "^!d",
-        "readable": "Ctrl+Alt+D",
+        "hotkey": "^!f",
+        "readable": "Ctrl+Alt+F",
+        "description": "--- Atajo para Gemini PWA (usando TogglePWA) ---",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^+g",
+        "readable": "Ctrl+Shift+G",
         "description": "--- Atajo para Gemini PWA (usando TogglePWA) ---",
         "action": "Acción personalizada"
     },
@@ -36,9 +48,39 @@
         "action": "Acción personalizada"
     },
     {
+        "hotkey": "^!a",
+        "readable": "Ctrl+Alt+A",
+        "description": "Abrir Cursor en el directorio especificado --- Atajos ------------------------------------------------",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!w",
+        "readable": "Ctrl+Alt+W",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!e",
+        "readable": "Ctrl+Alt+E",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "!+s",
+        "readable": "Alt+Shift+S",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "!+d",
+        "readable": "Alt+Shift+D",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
         "hotkey": "#t",
         "readable": "Win+T",
-        "description": "Abre Obsidian con argumentos",
+        "description": "Bueno, acá debería haber una función que básicamente mapee eh el atajo y hacia dónde me está llevando, ¿okay?",
         "action": "Acción personalizada"
     },
     {
@@ -60,26 +102,44 @@
         "action": "Acción personalizada"
     },
     {
+        "hotkey": "^#3",
+        "readable": "Ctrl+Win+3",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
         "hotkey": "#y",
         "readable": "Win+Y",
         "description": "",
         "action": "Acción personalizada"
     },
     {
-        "hotkey": "^!f",
-        "readable": "Ctrl+Alt+F",
-        "description": "} ============================================ Atajos de Teclado para Abrir Sitios Web ============================================",
-        "action": "Acción personalizada"
-    },
-    {
         "hotkey": "^!v",
         "readable": "Ctrl+Alt+V",
-        "description": "",
+        "description": "============================================ Atajos de Teclado para Abrir Sitios Web ============================================",
         "action": "Acción personalizada"
     },
     {
         "hotkey": "^!2",
         "readable": "Ctrl+Alt+2",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!3",
+        "readable": "Ctrl+Alt+3",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!4",
+        "readable": "Ctrl+Alt+4",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^!#r",
+        "readable": "Ctrl+Alt+Win+R",
         "description": "",
         "action": "Acción personalizada"
     },
@@ -102,8 +162,14 @@
         "action": "Acción personalizada"
     },
     {
-        "hotkey": "^!r",
-        "readable": "Ctrl+Alt+R",
+        "hotkey": "^+!r",
+        "readable": "Ctrl+Shift+Alt+R",
+        "description": "",
+        "action": "Acción personalizada"
+    },
+    {
+        "hotkey": "^+1",
+        "readable": "Ctrl+Shift+1",
         "description": "",
         "action": "Acción personalizada"
     },
