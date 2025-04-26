@@ -394,25 +394,7 @@ OpenCursor(Dir) {
 }
 
 
-
-
 ^+1:: SendInput(".\venv\Scripts\activate")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #|::
 {
