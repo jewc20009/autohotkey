@@ -3,17 +3,25 @@
 <head>
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atajos de Teclado</title>
+    <title>Atajos de Teclado - Dark Mode</title>
     <style>
         :root {
             --gap: 8px;
             --key-size: 50px;
             --border-radius: 6px;
+            /* Dark Theme Colors */
+            --dark-bg: #222831; /* Dark background */
+            --medium-dark-bg: #393E46; /* Slightly lighter dark */
+            --light-grey-text: #EEEEEE; /* Light text */
+            --medium-grey-text: #bdc3c7; /* Medium grey text */
+            --dark-shadow: rgba(0, 0, 0, 0.5);
+            --light-shadow: rgba(255, 255, 255, 0.1); /* Subtle light shadow for dark keys */
         }
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: var(--dark-bg); /* Dark background */
+            color: var(--light-grey-text); /* Default light text */
             margin: 0;
             padding: 20px;
             max-width: 1200px;
@@ -26,14 +34,14 @@
             align-items: center;
         }
 
-        h2 {
+        h2, h3 {
             text-align: center;
-            color: #333;
+            color: var(--light-grey-text); /* Light text for headings */
             margin-top: 10px;
             margin-bottom: 20px;
         }
 
-        /* Estilos para las teclas en la LISTA de atajos */
+        /* Estilos para las teclas en la LISTA de atajos (Mantienen colores originales para distinción) */
         .key {
             padding: 4px 8px;
             border-radius: 4px;
@@ -41,14 +49,16 @@
             margin: 0 2px;
             display: inline-block;
             font-weight: bold;
-            color: white;
+            color: white; /* White text works well on colored backgrounds */
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Add subtle shadow */
         }
 
         .ctrl { background-color: #3498db; }
         .shift { background-color: #9b59b6; }
         .alt { background-color: #e67e22; }
         .win { background-color: #2ecc71; }
-        .regular { background-color: #34495e; } /* Para teclas normales en la lista */
+        /* Regular key in the list - slightly lighter for dark mode */
+        .regular { background-color: #5F6774; color: var(--light-grey-text); }
 
         .keyboard-container {
             margin-top: 20px;
@@ -60,10 +70,10 @@
         .keyboard {
             display: inline-flex;
             flex-direction: column;
-            background-color: #e0e0e0;
+            background-color: var(--medium-dark-bg); /* Darker keyboard base */
             padding: var(--gap);
             border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px var(--dark-shadow); /* Darker shadow */
             gap: var(--gap);
             transform: perspective(1000px) rotateX(10deg);
         }
@@ -73,7 +83,7 @@
             gap: var(--gap);
         }
 
-        /* Estilos para las teclas del TECLADO VIRTUAL */
+        /* Estilos para las teclas del TECLADO VIRTUAL (Dark Mode) */
         .keyboard-key {
             width: var(--key-size);
             height: var(--key-size);
@@ -81,125 +91,115 @@
             align-items: center;
             justify-content: center;
             border-radius: var(--border-radius);
-            /* Color base de teclas virtuales - ajustado para que el texto sea visible */
-            background-color: #ffffff;
-            color: #333333; /* Texto oscuro para teclas claras */
+            /* Dark keys */
+            background-color: #4a4e58; /* Dark grey key */
+            color: var(--light-grey-text); /* Light text */
             font-weight: bold;
             font-family: 'Arial', sans-serif;
             cursor: pointer;
-            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
-            transition: transform 0.1s, box-shadow 0.1s;
+            /* Adjusted shadow for dark keys */
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+            transition: transform 0.1s, box-shadow 0.1s, background-color 0.1s;
             user-select: none;
-            border: 1px solid #cccccc; /* Borde ligero para definición */
+            border: 1px solid #6a6e78; /* Slightly lighter border for definition */
         }
-        /* Colores específicos para teclas modificadoras en el TECLADO VIRTUAL */
-        .keyboard-key.ctrl-virt { background-color: #3498db; color: white; }
-        .keyboard-key.shift-virt { background-color: #9b59b6; color: white; }
-        .keyboard-key.alt-virt { background-color: #e67e22; color: white; }
-        .keyboard-key.win-virt { background-color: #2ecc71; color: white; }
-        .keyboard-key.regular-virt { background-color: #ffffff; color: #333333; } /* Teclas normales virtuales */
-        .keyboard-key.space-virt { background-color: #eeeeee; color: #333333; } /* Barra espaciadora */
-
+        /* Colores específicos para teclas modificadoras en el TECLADO VIRTUAL (Mantienen color) */
+        .keyboard-key.ctrl-virt { background-color: #3498db; color: white; border-color: #2980b9; box-shadow: 0 3px 0 #1f618d; }
+        .keyboard-key.shift-virt { background-color: #9b59b6; color: white; border-color: #8e44ad; box-shadow: 0 3px 0 #7d3c9d; }
+        .keyboard-key.alt-virt { background-color: #e67e22; color: white; border-color: #d35400; box-shadow: 0 3px 0 #b94a00;}
+        .keyboard-key.win-virt { background-color: #2ecc71; color: white; border-color: #27ae60; box-shadow: 0 3px 0 #1f8b4c; }
+        .keyboard-key.regular-virt { /* Already covered by base .keyboard-key dark style */ }
+        .keyboard-key.space-virt { background-color: #555b66; color: var(--light-grey-text); border-color: #777d88; } /* Slightly different dark for space */
 
         .keyboard-key.wide-2 { width: calc(var(--key-size) * 2 + var(--gap)); }
         .keyboard-key.wide-3 { width: calc(var(--key-size) * 3 + var(--gap) * 2); }
         .keyboard-key.wide-6 { width: calc(var(--key-size) * 6 + var(--gap) * 5); }
 
+        /* Active state shadow adjustment */
         .keyboard-key.active {
-            /* Mantener tu animación original */
-            animation: pulse 0.5s;
-            /* Añadir también el efecto visual de presionado */
             transform: translateY(2px);
-            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.6); /* Darker pressed shadow */
+            /* The pulse animation is applied via JS on click/demonstration */
         }
 
+        /* Pulse animation shadow adjusted */
+        @keyframes pulse {
+            0% { transform: scale(1) translateY(0); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4); } /* Match initial shadow */
+            50% { transform: scale(1.05) translateY(0); box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5); } /* Slightly stronger shadow */
+            100% { transform: scale(1) translateY(0); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4); } /* Back to initial */
+        }
+
+        /* Shortcut description - Already dark and translucent, looks good */
         .shortcut-description {
             margin-top: 15px;
             padding: 10px 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Translucent dark */
             color: white;
             border-radius: 8px;
             font-weight: bold;
             text-align: center;
             min-height: 24px;
-            width: 80%; /* Ajustar ancho si es necesario */
+            width: 80%; /* Adjust width if necessary */
             box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle light border */
         }
 
         .shortcuts-list {
             margin-top: 20px;
             width: 100%;
-            max-width: 900px; /* Limitar ancho de la lista */
+            max-width: 900px; /* Limit width of the list */
         }
 
-        .shortcuts-list h3 {
-            margin-bottom: 15px;
-            text-align: center;
-            color: #333;
-        }
+        /* List header already styled via h3 */
 
         .shortcuts-grid {
             list-style: none;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajustar minmax */
-            gap: 10px; /* Ajustar gap */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
             margin-bottom: 20px;
         }
 
         .shortcut-item {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Para separar teclas y descripción */
-            padding: 10px 15px; /* Ajustar padding */
-            background-color: white;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: var(--medium-dark-bg); /* Dark background for items */
             border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px var(--dark-shadow); /* Dark shadow */
             cursor: pointer;
             transition: background-color 0.2s;
         }
 
         .shortcut-item:hover {
-            background-color: #f0f0f0;
+            background-color: #4a4e58; /* Slightly lighter dark on hover */
         }
 
         .shortcut-keys {
-            /* margin-right: 10px; */ /* Quitado para usar justify-content */
-            font-weight: bold;
+            /* Style is handled by .key spans inside */
             display: flex;
             align-items: center;
-            flex-shrink: 0; /* Evitar que las teclas se encojan */
+            flex-shrink: 0;
         }
         .shortcut-item-description {
              text-align: right;
-             margin-left: 15px; /* Espacio entre teclas y descripción */
-             color: #555;
+             margin-left: 15px;
+             color: var(--medium-grey-text); /* Medium grey text for description */
              font-size: 0.9em;
          }
 
-        @keyframes pulse {
-            0% { transform: scale(1) translateY(0); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1); }
-            50% { transform: scale(1.05) translateY(0); box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1); }
-            100% { transform: scale(1) translateY(0); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1); }
-        }
-
-        /* Asegúrate que .active aplique el estado final presionado */
-         .keyboard-key.active {
-             transform: translateY(2px);
-             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-             /* La animación pulse se aplica al hacer clic */
-         }
-
-
+        /* Error message dark theme */
         .error-message {
-            color: #e74c3c;
+            color: #f5c6cb; /* Light pink/red text */
             text-align: center;
             padding: 10px;
             margin-top: 20px;
-            background-color: #fadbd8;
-            border: 1px solid #f5b7b1;
+            background-color: #5c1e18; /* Dark red background */
+            border: 1px solid #e74c3c; /* Red border */
             border-radius: 5px;
-            display: none; /* Oculto por defecto */
+            display: none; /* Hidden by default */
         }
     </style>
 </head>
@@ -311,6 +311,7 @@
     </div>
 
     <script>
+        // JavaScript remains the same as in your original code
         // Variable global para almacenar los atajos cargados
         let shortcuts = [];
         // Variable global para datos de ejemplo (si falla la carga)
@@ -336,6 +337,7 @@
             'Tab': 'Tab',
             'CapsLock': 'CapsLock',
             'Backspace': 'Backspace',
+            'Menu': 'ContextMenu' // Added mapping for Menu key
             // Añadir más si es necesario (ej. flechas: 'ArrowUp', 'ArrowDown', etc.)
         };
 
@@ -352,6 +354,10 @@
             }
             // Para letras, números y símbolos simples (asume que data-key está en minúsculas)
             if (trimmedName.length === 1) {
+                // Special case for backtick/tilde key if needed
+                if (trimmedName === '`' || trimmedName === '~') {
+                    return `.keyboard-key[data-key="\`"]`;
+                }
                 return `.keyboard-key[data-key="${trimmedName.toLowerCase()}"]`;
             }
             // Fallback (si no coincide con nada anterior)
@@ -501,7 +507,7 @@
         // Cargar atajos desde el archivo JSON local (simplificado)
         async function loadShortcutsFromJSON() {
             // Nombre del archivo JSON esperado
-            const jsonPath = 'hotkeys.json'; // Asegúrate que este sea el nombre correcto
+            const jsonPath = 'hotkeys.json'; // Ruta relativa para mayor compatibilidad
             try {
                 console.log(`Intentando cargar atajos desde: ${jsonPath}`);
                 const response = await fetch(jsonPath);
@@ -512,16 +518,16 @@
 
                 // Validar que sea un array
                 if (Array.isArray(data)) {
-                     console.log('JSON cargado correctamente:', data);
-                     // Filtrar por si algún objeto no tiene 'readable' o 'description'
-                     shortcuts = data.filter(item => item.readable && typeof item.description !== 'undefined');
-                     if (shortcuts.length !== data.length) {
-                         console.warn("Algunos atajos en el JSON fueron omitidos por formato incorrecto.");
-                     }
+                    console.log('JSON cargado correctamente:', data);
+                    // Filtrar por si algún objeto no tiene 'readable' o 'description'
+                    shortcuts = data.filter(item => item.readable && typeof item.description !== 'undefined');
+                    if (shortcuts.length !== data.length) {
+                        console.warn("Algunos atajos en el JSON fueron omitidos por formato incorrecto.");
+                    }
                 } else {
-                     console.warn(`El archivo ${jsonPath} no contiene un array JSON válido.`);
-                     shortcuts = []; // Establecer como array vacío si no es un array
-                     throw new Error('El contenido del JSON no es un array.'); // Lanzar error para que lo capture el catch
+                    console.warn(`El archivo ${jsonPath} no contiene un array JSON válido.`);
+                    shortcuts = []; // Establecer como array vacío si no es un array
+                    throw new Error('El contenido del JSON no es un array.'); // Lanzar error para que lo capture el catch
                 }
             } catch (error) {
                 console.error('Error cargando o parseando atajos desde JSON:', error);

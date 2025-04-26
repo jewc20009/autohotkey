@@ -88,114 +88,6 @@ ToggleApp(WindowTitle, AppExePath, AppExeName)
     }
 }
 
-; ================================================================
-; Definición de Atajos de Teclado (Hotkeys)
-; ================================================================
-
-; --- Atajo para Gemini PWA (usando TogglePWA) ---
-^!s:: ; Ctrl+Alt+G
-{
-    TogglePWA(
-        "Gemini",                                       ; 1. WindowTitle
-        "gdfaincndogidkdcdkhapmbffkckdkhn",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
-        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-^!d:: ; Ctrl+Alt+G
-{
-    TogglePWA(
-        "Gemini1-Gemini",                                       ; 1. WindowTitle
-        "gbpghmjlagojpokaelpobjahbmcjdcen",             ; 2. AppID (Edge PWA)
-        "C:\Users\jewc2\AppData\Local\Google\Chrome Dev\Application\chrome.exe", ; 3. BrowserPath (¡VERIFICAR!)
-        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
-        "chrome.exe"                                    ; 5. BrowserExeName
-    )
-}
-
-
-^!9:: ; Ctrl+Alt+G
-{
-    TogglePWA(
-        "pgAdmin",                                       ; 1. WindowTitle
-        "mmcjlcggalaplmfidacllgaceebonibm",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
-        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-
-
-; --- Atajo para Gemini PWA (usando TogglePWA) ---
-^!f:: ; Ctrl+Alt+D
-{
-    TogglePWA(
-        "ChatGPT",                                       ; 1. WindowTitle
-        "cadlkienfkclaiaibeoongdcgmdikeeg",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
-        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-; --- Atajo para Gemini PWA (usando TogglePWA) ---
-^+g:: ; ctrl+shift+G
-{
-    TogglePWA(
-        "GitHub",                                       ; 1. WindowTitle
-        "mjoklplbddabcmpepnokjaffbmgbkkgg",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
-        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-
-
-; Atajo para abrir WebUI usando TogglePWA
-^!t:: ; Ctrl+Alt+T
-{
-    TogglePWA(
-        "WebUI",                                        ; 1. WindowTitle
-        "diedjfkbcajlkdddmgifccngafkagghl",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
-        "Default",                                      ; 4. BrowserProfile
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-; Atajo para abrir WebUI usando TogglePWA
-^#!x:: ; Ctrl+Alt+T
-{
-    TogglePWA(
-        "3000",                                        ; 1. WindowTitle
-        "ogekleedodoolciidllfomibdjippjna",             ; 2. AppID (Edge PWA)
-        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
-        "Default",                                      ; 4. BrowserProfile
-        "msedge.exe"                                    ; 5. BrowserExeName
-    )
-}
-; --- Ejemplo: Atajo para Notepad (usando ToggleApp) ---
-+!r:: ;* Shift+Alt+R
-{
-    ; Código para abrir Obsidian con argumentos específicos
-    ObsidianPath := "C:\Users\jewc2\AppData\Local\Programs\Obsidian\Obsidian.exe"
-    ObsidianArgs := "--vault=MiVault --open-vault --no-gpu"
-    
-    ; Verifica si Obsidian está abierto para alternar
-    WindowCriteria := "Obsidian ahk_exe Obsidian.exe"
-    SetTitleMatchMode(2)
-    TargetHWND := WinExist(WindowCriteria)
-    
-    if (TargetHWND) {
-        if WinActive("ahk_id " . TargetHWND) {
-            WinMinimize("ahk_id " . TargetHWND)
-        } else {
-            WinActivate("ahk_id " . TargetHWND)
-        }
-    } else {
-        ; Abre Obsidian con argumentos
-        Run('"' . ObsidianPath . '" ' . ObsidianArgs)
-    }
-}
 ; ===============================================================
 ; Ctrl+Alt+A → Abre o alterna la ventana de Cursor IDE
 ; ===============================================================
@@ -255,36 +147,178 @@ OpenCursor(Dir) {
     Run('"' . CursorPath . '" "' . Dir . '"', Dir)
 }
 
-;--- Atajos ------------------------------------------------
+
+
+
+; --- Atajo para Gemini PWA ---
+; Ctrl+Alt+S - Abre Gemini PWA
+^!s::
+{
+    TogglePWA(
+        "Gemini",                                       ; 1. WindowTitle
+        "gdfaincndogidkdcdkhapmbffkckdkhn",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para Gemini1 PWA ---
+; Ctrl+Alt+D - Abre Gemini1 PWA
+^!d::
+{
+    TogglePWA(
+        "Gemini1-Gemini",                                       ; 1. WindowTitle
+        "gbpghmjlagojpokaelpobjahbmcjdcen",             ; 2. AppID (Edge PWA)
+        "C:\Users\jewc2\AppData\Local\Google\Chrome Dev\Application\chrome.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "chrome.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para pgAdmin PWA ---
+; Ctrl+Alt+9 - Abre pgAdmin PWA
+^!9::
+{
+    TogglePWA(
+        "pgAdmin",                                       ; 1. WindowTitle
+        "mmcjlcggalaplmfidacllgaceebonibm",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para ChatGPT PWA ---
+; Ctrl+Alt+F - Abre ChatGPT PWA
+^!f::
+{
+    TogglePWA(
+        "ChatGPT",                                       ; 1. WindowTitle
+        "cadlkienfkclaiaibeoongdcgmdikeeg",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para GitHub PWA ---
+; Ctrl+Shift+G - Abre GitHub PWA
+^+g::
+{
+    TogglePWA(
+        "GitHub",                                       ; 1. WindowTitle
+        "mjoklplbddabcmpepnokjaffbmgbkkgg",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para WebUI PWA ---
+; Ctrl+Alt+T - Abre WebUI PWA
+^!t::
+{
+    TogglePWA(
+        "WebUI",                                        ; 1. WindowTitle
+        "diedjfkbcajlkdddmgifccngafkagghl",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
+        "Default",                                      ; 4. BrowserProfile
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para WebUI 3000 PWA ---
+; Ctrl+Win+X - Abre WebUI 3000 PWA
+^#!x::
+{
+    TogglePWA(
+        "3000",                                        ; 1. WindowTitle
+        "ogekleedodoolciidllfomibdjippjna",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
+        "Default",                                      ; 4. BrowserProfile
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; Abrir ayuda en navegador  
+#h::
+{
+    TogglePWA(
+        "Atajos de Teclado",                                        ; 1. WindowTitle
+        "hebfdbhdbnllebbbnanjkppekgnchldh",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
+        "Default",                                      ; 4. BrowserProfile
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+; Shift+Alt+R - Abre Obsidian con vault específico
++!r::
+{
+    ; Código para abrir Obsidian con argumentos específicos
+    ObsidianPath := "C:\Users\jewc2\AppData\Local\Programs\Obsidian\Obsidian.exe"
+    ObsidianArgs := "--vault=MiVault --open-vault --no-gpu"
+    
+    ; Verifica si Obsidian está abierto para alternar
+    WindowCriteria := "Obsidian ahk_exe Obsidian.exe"
+    SetTitleMatchMode(2)
+    TargetHWND := WinExist(WindowCriteria)
+    
+    if (TargetHWND) {
+        if WinActive("ahk_id " . TargetHWND) {
+            WinMinimize("ahk_id " . TargetHWND)
+        } else {
+            WinActivate("ahk_id " . TargetHWND)
+        }
+    } else {
+        ; Abre Obsidian con argumentos
+        Run('"' . ObsidianPath . '" ' . ObsidianArgs)
+    }
+}
+
+; --- Atajo para Cursor IDE (autohotkey) ---
+; Ctrl+Alt+A - Cursor autohotkey
 ^!a::
 {
     OpenCursor("D:\Users\autohotkey")
-    CursorToggle("D:\Users\autohotkey")        ; Ctrl+Alt+A
+    CursorToggle("D:\Users\autohotkey")
 }
+
+; --- Atajo para Cursor IDE (whatsapp_flask) ---
+; Ctrl+Alt+W - Cursor whatsapp
 ^!w::
 {
     OpenCursor("D:\Users\whatsapp_flask")
     CursorToggle("D:\Users\whatsapp_flask")
 }
+
+; --- Atajo para Cursor IDE (once-ui) ---
+; Ctrl+Alt+E - Cursor once-ui
 ^!e::
 {
     OpenCursor("D:\Users\once-ui-design-for-nextjs")
     CursorToggle("D:\Users\once-ui-design-for-nextjs")
 }
-!+s:: ; Ctrl+Shift+E
+
+; --- Atajo para Cursor IDE (Originsong) ---
+; Alt+Shift+S - Cursor Originsong
+!+s::
 {
     OpenCursor("D:\Users\Originsong-1.3")
     CursorToggle("D:\Users\Originsong-1.3")
 }
-!+d:: ; Ctrl+Shift+E
+
+; --- Atajo para Cursor IDE (Scripts) ---
+; Alt+Shift+D - Cursor Scripts
+!+d::
 {
     OpenCursor("D:\Scripts")
     CursorToggle("D:\Scripts")
 }
 
-; Bueno, acá debería haber una función que básicamente mapee eh el atajo y hacia dónde me está llevando, ¿okay?
-   
-#t:: ;
+; --- Atajo para Warp Terminal ---
+; Win+T - Warp
+#t::
 {
     ToggleApp(
         "Warp",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
@@ -293,8 +327,9 @@ OpenCursor(Dir) {
     )
 }
 
-; Atajo para YouTube Music (usando ToggleApp)
-^!y:: ; Ctrl+Alt+Y
+; --- Atajo para YouTube Music ---
+; Ctrl+Alt+Y - YT Music
+^!y::
 {
     ToggleApp(
         "YouTube Music",                                ; 1. WindowTitle
@@ -303,24 +338,20 @@ OpenCursor(Dir) {
     )
 }
 
-#u:: ;
-{
-    ToggleApp(
-        "ChatGPT",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
-        "C:\Program Files\WindowsApps\OpenAI.ChatGPT-Desktop_1.2025.90.0_x64__2pzpsadc76e0y\app\ChatGPT.exe",
-        "ChatGPT.exe"
-    )
-}
-
-#o:: ;
+; --- Atajo para WhatsApp ---
+; Win+O - WhatsApp
+#o::
 {
     ToggleApp(
         "WhatsApp",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
         "C:\Program Files\WindowsApps\5319275A.51895FA4EA97F_2.2516.2.0_x64__cv1g1gvanyjgm\WhatsApp.exe",
         "WhatsApp.exe"
     )
-} 
-^#3:: ;
+}
+
+; --- Atajo para VYSOR ---
+; Ctrl+Win+3 - VYSOR
+^#3::
 {
     ToggleApp(
         "VYSOR",  ; Cambiado de "Warp" a "Warp Terminal" que es el título exacto de la ventana
@@ -329,77 +360,97 @@ OpenCursor(Dir) {
     )
 }
 
-#y:: ; Atajo para ejecutar turbo2.bat en modo administrador
+; --- Atajo para turbo2.bat ---
+; Win+Y - turbo2
+#y::
 {
     Run("*RunAs D:\Scripts\scripts\turbo2.bat", , "RunAs")
 }
-; --- Ejemplo: Atajo para Calculadora (usando ToggleApp) ---
-;^!c:: ; Ctrl+Alt+C
-;{
-;    ToggleApp(
-;        "Calculadora",                                  ; 1. WindowTitle ¡VERIFICAR!
-;        "C:\Windows\System32\calc.exe",                 ; 2. AppExePath (Ruta estándar, usualmente correcta)
-;        "calc.exe"                                      ; 3. AppExeName
-;    )
-;}
 
-; ============================================
-; Atajos de Teclado para Abrir Sitios Web
-; ============================================
-
-
+; --- Atajo para ChatGPT Web ---
+; Ctrl+Alt+V - ChatGPT Web
 ^!v::
 {
     Run("*RunAs https://chatgpt.com/")
 }
 
+; --- Atajo para YouTube Web ---
+; Ctrl+Alt+2 - YouTube
 ^!2::
 {
     Run("*RunAs https://www.youtube.com/")
 }
 
+; --- Atajo para Google Notebook ---
+; Ctrl+Alt+3 - Notebook
 ^!3::
 {
     Run("*RunAs https://notebooklm.google.com/?_gl=1*179eob1*_ga*MTQ0MzYzMzg4Mi4xNzQ1MTE4NjEw*_ga_W0LDH41ZCB*MTc0NTMxODg1OS4zLjAuMTc0NTMxODg1OS42MC4wLjA.")
 }
 
+; --- Atajo para Google Colab ---
+; Ctrl+Alt+4 - Colab
 ^!4::
 {
     Run("*RunAs https://colab.research.google.com/#create=true")
 }
 
+; --- Atajo para PedidosYa ---
+; Ctrl+Alt+Win+R - PedidosYa
 ^!#r::
 {
     Run("*RunAs https://www.pedidosya.com.pe/")
 }
 
-!g:: ;* Atajo para abrir la documentación de LangChain en el navegador
+; --- Atajo para LangChain Docs ---
+; Alt+G - LangChain
+!g::
 {
     Run("*RunAs https://python.langchain.com/docs/introduction/")
 }
 
+; --- Atajo para LangGraph ---
+; Win+J - LangGraph
 #j::
 {
     Run("*RunAs https://langchain-ai.github.io/langgraph/")
 }
 
+; --- Gemini Web ---
+; Shift+Alt+3 - Gemini
 +!3::
 {
     Run("*RunAs https://gemini.google.com/app")
 }
 
+; --- Rappi ---
+; Ctrl+Shift+Alt+R - Rappi
 ^+!r::
 {
     Run("*RunAs https://www.rappi.com.pe/tiendas/54165-rappi-market-nc")
 }
 
+; --- Activar venv ---
+; Ctrl+Shift+1 - venv
+^+1::
+{
+    SendInput(".\venv\Scripts\activate")
+}
 
-^+1:: SendInput(".\venv\Scripts\activate")
-
+; --- Recargar script ---
+; Win+| - Recargar
 #|::
 {
     Reload()
+    local outFile := A_ScriptDir "\hotkeys.json"
+    local result := ExportHotkeysToJSON(outFile)
+
 }
+
+; --- Exportar hotkeys ---
+; Ctrl+Alt+H - Exportar JSON
+
+
 
 ; ============================================================
 ;  Función: ExportHotkeysToJSON
@@ -408,7 +459,8 @@ OpenCursor(Dir) {
 ;     • Lee este mismo script (.ahk) y detecta todas las líneas
 ;       que definen un atajo de teclado ►  «ALGO::»
 ;     • Construye un JSON estructurado con información detallada
-;     • Incluye representación legible de teclas y descripción
+;     • Incluye representación legible de teclas, descripción y tipo de acción
+;     • Permite opciones para modificar, eliminar o agregar atajos
 ;     • Si se pasa una ruta de salida, guarda el archivo JSON.
 ;     • Retorna el string JSON y lo deja en la variable global
 ;       LastHotkeysJSON para consultas posteriores.
@@ -460,8 +512,10 @@ ExportHotkeysToJSON(OutputPath := "")
             }
             hotkeyInfo["description"] := Trim(desc)
             
-            ; Buscar acción (siguiente línea no vacía después del hotkey)
+            ; Buscar acción y tipo de acción (siguiente línea no vacía después del hotkey)
             local action := ""
+            local actionType := ""
+            local target := ""
             local k := i + 1
             while (k <= numLines && action = "")
             {
@@ -469,17 +523,47 @@ ExportHotkeysToJSON(OutputPath := "")
                 if (nextLine != "" && !RegExMatch(nextLine, "^\s*;"))
                 {
                     if (RegExMatch(nextLine, "TogglePWA\((.+)", &pwa))
-                        action := "Abre PWA"
+                    {
+                        action := "Abre o alterna una PWA"
+                        actionType := "TogglePWA"
+                        target := GetParameter(nextLine, 1)
+                    }
                     else if (RegExMatch(nextLine, "ToggleApp\((.+)", &app))
-                        action := "Abre aplicación"
+                    {
+                        action := "Abre o alterna una aplicación"
+                        actionType := "ToggleApp"
+                        target := GetParameter(nextLine, 1)
+                    }
                     else if (RegExMatch(nextLine, "Run\((.+)", &run))
-                        action := "Ejecuta comando"
+                    {
+                        action := "Ejecuta un comando o abre una página web"
+                        actionType := "Run"
+                        target := GetParameter(nextLine, 1)
+                    }
+                    else if (RegExMatch(nextLine, "OpenCursor\((.+)", &cursor))
+                    {
+                        action := "Abre Cursor IDE en un directorio específico"
+                        actionType := "CursorToggle"
+                        target := GetParameter(nextLine, 1)
+                    }
                     else
+                    {
                         action := "Acción personalizada"
+                        actionType := "Custom"
+                        target := "N/A"
+                    }
                 }
                 k++
             }
             hotkeyInfo["action"] := action
+            hotkeyInfo["actionType"] := actionType
+            hotkeyInfo["target"] := target
+            
+            ; Opciones de modificación
+            hotkeyInfo["options"] := Map()
+            hotkeyInfo["options"]["modify"] := "Cambiar atajo o acción"
+            hotkeyInfo["options"]["delete"] := "Eliminar atajo"
+            hotkeyInfo["options"]["add"] := "Agregar nuevo atajo basado en este tipo"
             
             ; Agregar al array
             hotkeyInfoArr.Push(hotkeyInfo)
@@ -492,10 +576,17 @@ ExportHotkeysToJSON(OutputPath := "")
     for idx, info in hotkeyInfoArr
     {
         json .= "`r`n    {`r`n"
-        json .= "        `"hotkey`": `"" . info["hotkey"] . "`",`r`n"
-        json .= "        `"readable`": `"" . info["readable"] . "`",`r`n"
-        json .= "        `"description`": `"" . info["description"] . "`",`r`n"
-        json .= "        `"action`": `"" . info["action"] . "`"`r`n"
+        json .= "        `"hotkey`": `"." . info["hotkey"] . "`",`r`n"
+        json .= "        `"readable`": `"." . info["readable"] . "`",`r`n"
+        json .= "        `"description`": `"." . info["description"] . "`",`r`n"
+        json .= "        `"action`": `"." . info["action"] . "`",`r`n"
+        json .= "        `"actionType`": `"." . info["actionType"] . "`",`r`n"
+        json .= "        `"target`": `"." . info["target"] . "`",`r`n"
+        json .= "        `"options`": {`r`n"
+        json .= "            `"modify`": `"." . info["options"]["modify"] . "`",`r`n"
+        json .= "            `"delete`": `"." . info["options"]["delete"] . "`",`r`n"
+        json .= "            `"add`": `"." . info["options"]["add"] . "`"`r`n"
+        json .= "        }`r`n"
         json .= "    }"
         
         if (idx < hotkeyInfoArr.Length)
@@ -512,6 +603,24 @@ ExportHotkeysToJSON(OutputPath := "")
     
     global LastHotkeysJSON := json
     return json
+}
+
+; ============================================================
+;  Función: GetParameter
+;  ------------------------------------------------------------
+;  Extrae un parámetro específico de una línea de código basada en su posición
+; ============================================================
+GetParameter(line, position)
+{
+    local params := StrSplit(line, ",")
+    if (params.Length >= position)
+    {
+        local param := Trim(params[position])
+        ; Eliminar comillas si las hay
+        param := StrReplace(param, "`"", "")
+        return param
+    }
+    return "N/A"
 }
 
 ; ============================================================
@@ -604,10 +713,3 @@ ConvertHotkeyToReadable(hotkeyStr)
 ;  Genera/actualiza «hotkeys.json» en la carpeta del script y
 ;  muestra el JSON resultante en un MsgBox.|
 ; ------------------------------------------------------------
-^!h::
-{
-    local outFile := A_ScriptDir "\hotkeys.json"
-    local result := ExportHotkeysToJSON(outFile)
-    MsgBox("Hotkeys exportados a:`n" . outFile "`n`n" . result, "ExportHotkeysToJSON", 64)
-}
-; ============================================================

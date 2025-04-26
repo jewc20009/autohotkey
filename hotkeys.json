@@ -1,188 +1,392 @@
 ﻿[
     {
-        "hotkey": "^!s",
-        "readable": "Ctrl+Alt+S",
-        "description": "================================================================ Definición de Atajos de Teclado (Hotkeys) ================================================================ --- Atajo para Gemini PWA (usando TogglePWA) ---",
-        "action": "Acción personalizada"
+        "hotkey": ".^!s",
+        "readable": ".Ctrl+Alt+S",
+        "description": ".--- Atajo para Gemini PWA --- Ctrl+Alt+S - Abre Gemini PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!d",
-        "readable": "Ctrl+Alt+D",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!d",
+        "readable": ".Ctrl+Alt+D",
+        "description": ".--- Atajo para Gemini1 PWA --- Ctrl+Alt+D - Abre Gemini1 PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!9",
-        "readable": "Ctrl+Alt+9",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!9",
+        "readable": ".Ctrl+Alt+9",
+        "description": ".--- Atajo para pgAdmin PWA --- Ctrl+Alt+9 - Abre pgAdmin PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!f",
-        "readable": "Ctrl+Alt+F",
-        "description": "--- Atajo para Gemini PWA (usando TogglePWA) ---",
-        "action": "Acción personalizada"
+        "hotkey": ".^!f",
+        "readable": ".Ctrl+Alt+F",
+        "description": ".--- Atajo para ChatGPT PWA --- Ctrl+Alt+F - Abre ChatGPT PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^+g",
-        "readable": "Ctrl+Shift+G",
-        "description": "--- Atajo para Gemini PWA (usando TogglePWA) ---",
-        "action": "Acción personalizada"
+        "hotkey": ".^+g",
+        "readable": ".Ctrl+Shift+G",
+        "description": ".--- Atajo para GitHub PWA --- Ctrl+Shift+G - Abre GitHub PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!t",
-        "readable": "Ctrl+Alt+T",
-        "description": "Atajo para abrir WebUI usando TogglePWA",
-        "action": "Acción personalizada"
+        "hotkey": ".^!t",
+        "readable": ".Ctrl+Alt+T",
+        "description": ".--- Atajo para WebUI PWA --- Ctrl+Alt+T - Abre WebUI PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^#!x",
-        "readable": "Ctrl+Win+Alt+X",
-        "description": "Atajo para abrir WebUI usando TogglePWA",
-        "action": "Acción personalizada"
+        "hotkey": ".^#!x",
+        "readable": ".Ctrl+Win+Alt+X",
+        "description": ".--- Atajo para WebUI 3000 PWA --- Ctrl+Win+X - Abre WebUI 3000 PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "+!r",
-        "readable": "Shift+Alt+R",
-        "description": "--- Ejemplo: Atajo para Notepad (usando ToggleApp) ---",
-        "action": "Acción personalizada"
+        "hotkey": ".#h",
+        "readable": ".Win+H",
+        "description": ".Abrir ayuda en navegador",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!a",
-        "readable": "Ctrl+Alt+A",
-        "description": "Abrir Cursor en el directorio especificado --- Atajos ------------------------------------------------",
-        "action": "Acción personalizada"
+        "hotkey": ".+!r",
+        "readable": ".Shift+Alt+R",
+        "description": ".Shift+Alt+R - Abre Obsidian con vault específico",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!w",
-        "readable": "Ctrl+Alt+W",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!a",
+        "readable": ".Ctrl+Alt+A",
+        "description": ".--- Atajo para Cursor IDE (autohotkey) --- Ctrl+Alt+A - Cursor autohotkey",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!e",
-        "readable": "Ctrl+Alt+E",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!w",
+        "readable": ".Ctrl+Alt+W",
+        "description": ".--- Atajo para Cursor IDE (whatsapp_flask) --- Ctrl+Alt+W - Cursor whatsapp",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "!+s",
-        "readable": "Alt+Shift+S",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!e",
+        "readable": ".Ctrl+Alt+E",
+        "description": ".--- Atajo para Cursor IDE (once-ui) --- Ctrl+Alt+E - Cursor once-ui",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "!+d",
-        "readable": "Alt+Shift+D",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".!+s",
+        "readable": ".Alt+Shift+S",
+        "description": ".--- Atajo para Cursor IDE (Originsong) --- Alt+Shift+S - Cursor Originsong",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#t",
-        "readable": "Win+T",
-        "description": "Bueno, acá debería haber una función que básicamente mapee eh el atajo y hacia dónde me está llevando, ¿okay?",
-        "action": "Acción personalizada"
+        "hotkey": ".!+d",
+        "readable": ".Alt+Shift+D",
+        "description": ".--- Atajo para Cursor IDE (Scripts) --- Alt+Shift+D - Cursor Scripts",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!y",
-        "readable": "Ctrl+Alt+Y",
-        "description": "Atajo para YouTube Music (usando ToggleApp)",
-        "action": "Acción personalizada"
+        "hotkey": ".#t",
+        "readable": ".Win+T",
+        "description": ".--- Atajo para Warp Terminal --- Win+T - Warp",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#u",
-        "readable": "Win+U",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!y",
+        "readable": ".Ctrl+Alt+Y",
+        "description": ".--- Atajo para YouTube Music --- Ctrl+Alt+Y - YT Music",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#o",
-        "readable": "Win+O",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".#o",
+        "readable": ".Win+O",
+        "description": ".--- Atajo para WhatsApp --- Win+O - WhatsApp",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^#3",
-        "readable": "Ctrl+Win+3",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^#3",
+        "readable": ".Ctrl+Win+3",
+        "description": ".--- Atajo para VYSOR --- Ctrl+Win+3 - VYSOR",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#y",
-        "readable": "Win+Y",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".#y",
+        "readable": ".Win+Y",
+        "description": ".--- Atajo para turbo2.bat --- Win+Y - turbo2",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!v",
-        "readable": "Ctrl+Alt+V",
-        "description": "============================================ Atajos de Teclado para Abrir Sitios Web ============================================",
-        "action": "Acción personalizada"
+        "hotkey": ".^!v",
+        "readable": ".Ctrl+Alt+V",
+        "description": ".--- Atajo para ChatGPT Web --- Ctrl+Alt+V - ChatGPT Web",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!2",
-        "readable": "Ctrl+Alt+2",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!2",
+        "readable": ".Ctrl+Alt+2",
+        "description": ".--- Atajo para YouTube Web --- Ctrl+Alt+2 - YouTube",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!3",
-        "readable": "Ctrl+Alt+3",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!3",
+        "readable": ".Ctrl+Alt+3",
+        "description": ".--- Atajo para Google Notebook --- Ctrl+Alt+3 - Notebook",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!4",
-        "readable": "Ctrl+Alt+4",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!4",
+        "readable": ".Ctrl+Alt+4",
+        "description": ".--- Atajo para Google Colab --- Ctrl+Alt+4 - Colab",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^!#r",
-        "readable": "Ctrl+Alt+Win+R",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^!#r",
+        "readable": ".Ctrl+Alt+Win+R",
+        "description": ".--- Atajo para PedidosYa --- Ctrl+Alt+Win+R - PedidosYa",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "!g",
-        "readable": "Alt+G",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".!g",
+        "readable": ".Alt+G",
+        "description": ".--- Atajo para LangChain Docs --- Alt+G - LangChain",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#j",
-        "readable": "Win+J",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".#j",
+        "readable": ".Win+J",
+        "description": ".--- Atajo para LangGraph --- Win+J - LangGraph",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "+!3",
-        "readable": "Shift+Alt+3",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".+!3",
+        "readable": ".Shift+Alt+3",
+        "description": ".--- Gemini Web --- Shift+Alt+3 - Gemini",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^+!r",
-        "readable": "Ctrl+Shift+Alt+R",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^+!r",
+        "readable": ".Ctrl+Shift+Alt+R",
+        "description": ".--- Rappi --- Ctrl+Shift+Alt+R - Rappi",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "^+1",
-        "readable": "Ctrl+Shift+1",
-        "description": "",
-        "action": "Acción personalizada"
+        "hotkey": ".^+1",
+        "readable": ".Ctrl+Shift+1",
+        "description": ".--- Activar venv --- Ctrl+Shift+1 - venv",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     },
     {
-        "hotkey": "#|",
-        "readable": "Win+|",
-        "description": "",
-        "action": "Acción personalizada"
-    },
-    {
-        "hotkey": "^!h",
-        "readable": "Ctrl+Alt+H",
-        "description": "------------------------------------------------------------ Hotkey:  Ctrl + Alt + H Genera/actualiza «hotkeys.json» en la carpeta del script y muestra el JSON resultante en un MsgBox.| ------------------------------------------------------------",
-        "action": "Acción personalizada"
+        "hotkey": ".#|",
+        "readable": ".Win+|",
+        "description": ".--- Recargar script --- Win+| - Recargar",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
     }
 ]

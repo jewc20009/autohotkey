@@ -581,14 +581,14 @@ async def toggle_app_with_args_action(**kwargs):
 async def cursor_toggle_action(**kwargs):
     """ (Async) Alterna Cursor: Lanza en dir específico, luego busca y alterna. """
     target_dir = kwargs['dir']
-    cursor_exe_path = r"C:\Users\jewc2\AppData\Local\Programs\cursor\cursor.exe"
-    cursor_exe_name = "cursor.exe"
+    cursor_exe_path = r"C:\Users\jewc2\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+    cursor_exe_name = "Code.exe"
 
-    print(f"Acción CursorToggle (Async): Lanzando en {target_dir}, luego alternando.")
+    print(f"Acción CursorToggle (Async): Lanzando VS Code en {target_dir}, luego alternando.")
 
-    # 1. Intentar lanzar Cursor en el directorio específico (async)
+    # 1. Intentar lanzar VS Code en el directorio específico (async)
     if not os.path.exists(cursor_exe_path):
-        print(f"Error: No se encontró el ejecutable de Cursor: {cursor_exe_path}")
+        print(f"Error: No se encontró el ejecutable de VS Code: {cursor_exe_path}")
     elif not os.path.isdir(target_dir):
         print(f"Error: El directorio no existe: {target_dir}")
     else:
@@ -596,15 +596,15 @@ async def cursor_toggle_action(**kwargs):
         # Launching with the directory as an argument is typical for editors.
         await launch_app(cursor_exe_path, [target_dir])
 
-    # 2. Esperar un poco y luego buscar *cualquier* ventana de Cursor y alternarla
+    # 2. Esperar un poco y luego buscar *cualquier* ventana de VS Code y alternarla
     await asyncio.sleep(0.35)
     # Usamos un título genérico o incluso solo el exe para encontrar *alguna* ventana
-    window = await find_window("Cursor", cursor_exe_name) # Busca "Cursor" o cualquier ventana de cursor.exe
+    window = await find_window("Visual Studio Code", cursor_exe_name) # Busca "Visual Studio Code" o cualquier ventana de Code.exe
     if window:
-        print(f"Encontrada ventana de Cursor: {window.title}")
+        print(f"Encontrada ventana de VS Code: {window.title}")
         await toggle_window(window)
     else:
-        print("No se encontró ninguna ventana de Cursor para alternar después de lanzar (async).")
+        print("No se encontró ninguna ventana de VS Code para alternar después de lanzar (async).")
 
 def _open_url_sync(url):
     """ Synchronous URL opening. """
