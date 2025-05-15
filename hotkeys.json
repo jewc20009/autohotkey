@@ -39,6 +39,19 @@
         }
     },
     {
+        "hotkey": ".^!j",
+        "readable": ".Ctrl+Alt+J",
+        "description": ".--- Atajo para Chatwoot PWA --- Ctrl+Alt+J - Abre Chatwoot PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
+    },
+    {
         "hotkey": ".^!f",
         "readable": ".Ctrl+Alt+F",
         "description": ".--- Atajo para ChatGPT PWA --- Ctrl+Alt+F - Abre ChatGPT PWA",
@@ -65,9 +78,48 @@
         }
     },
     {
+        "hotkey": ".^!b",
+        "readable": ".Ctrl+Alt+B",
+        "description": ".--- Atajo para Google AI Studio PWA --- Ctrl+Alt+E - Abre Google AI Studio PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
+    },
+    {
         "hotkey": ".^!t",
         "readable": ".Ctrl+Alt+T",
         "description": ".--- Atajo para WebUI PWA --- Ctrl+Alt+T - Abre WebUI PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
+    },
+    {
+        "hotkey": ".^!w",
+        "readable": ".Ctrl+Alt+W",
+        "description": ".--- Atajo para WhatsApp Web PWA --- Ctrl+Alt+W - Abre WhatsApp Web PWA",
+        "action": ".Acción personalizada",
+        "actionType": ".Custom",
+        "target": ".N/A",
+        "options": {
+            "modify": ".Cambiar atajo o acción",
+            "delete": ".Eliminar atajo",
+            "add": ".Agregar nuevo atajo basado en este tipo"
+        }
+    },
+    {
+        "hotkey": ".^!m",
+        "readable": ".Ctrl+Alt+M",
+        "description": ".--- Atajo para Google Maps PWA --- Ctrl+Alt+M - Abre Google Maps PWA",
         "action": ".Acción personalizada",
         "actionType": ".Custom",
         "target": ".N/A",
@@ -120,19 +172,6 @@
         "hotkey": ".^!a",
         "readable": ".Ctrl+Alt+A",
         "description": ".--- Atajo para Cursor IDE (autohotkey) --- Ctrl+Alt+A - Cursor autohotkey",
-        "action": ".Acción personalizada",
-        "actionType": ".Custom",
-        "target": ".N/A",
-        "options": {
-            "modify": ".Cambiar atajo o acción",
-            "delete": ".Eliminar atajo",
-            "add": ".Agregar nuevo atajo basado en este tipo"
-        }
-    },
-    {
-        "hotkey": ".^!w",
-        "readable": ".Ctrl+Alt+W",
-        "description": ".--- Atajo para Cursor IDE (whatsapp_flask) --- Ctrl+Alt+W - Cursor whatsapp",
         "action": ".Acción personalizada",
         "actionType": ".Custom",
         "target": ".N/A",

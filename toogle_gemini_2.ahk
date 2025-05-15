@@ -189,6 +189,19 @@ OpenCursor(Dir) {
     )
 }
 
+; --- Atajo para Chatwoot PWA ---
+; Ctrl+Alt+J - Abre Chatwoot PWA
+^!j::
+{
+    TogglePWA(
+        "Chatwoot",                                       ; 1. WindowTitle
+        "jpbloolfjpphlpkgcaecfnpnahfhncdc",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
 ; --- Atajo para ChatGPT PWA ---
 ; Ctrl+Alt+F - Abre ChatGPT PWA
 ^!f::
@@ -215,6 +228,19 @@ OpenCursor(Dir) {
     )
 }
 
+; --- Atajo para Google AI Studio PWA ---
+; Ctrl+Alt+E - Abre Google AI Studio PWA
+^!b::
+{
+    TogglePWA(
+        "Google AI Studio",                                       ; 1. WindowTitle
+        "mojogeknlbnppmajemmkcfkilgaapppk",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath (¡VERIFICAR!)
+        "Default",                                      ; 4. BrowserProfile (¡VERIFICAR!)
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
 ; --- Atajo para WebUI PWA ---
 ; Ctrl+Alt+T - Abre WebUI PWA
 ^!t::
@@ -222,6 +248,32 @@ OpenCursor(Dir) {
     TogglePWA(
         "WebUI",                                        ; 1. WindowTitle
         "diedjfkbcajlkdddmgifccngafkagghl",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
+        "Default",                                      ; 4. BrowserProfile
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para WhatsApp Web PWA ---
+; Ctrl+Alt+W - Abre WhatsApp Web PWA
+^!w::
+{
+    TogglePWA(
+        "WhatsApp Web",                                 ; 1. WindowTitle
+        "hnpfjngllnobngcgfapefoaidbinmjnm",             ; 2. AppID (Edge PWA)
+        "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
+        "Default",                                      ; 4. BrowserProfile
+        "msedge.exe"                                    ; 5. BrowserExeName
+    )
+}
+
+; --- Atajo para Google Maps PWA ---
+; Ctrl+Alt+M - Abre Google Maps PWA
+^!m::
+{
+    TogglePWA(
+        "Google Maps",                                        ; 1. WindowTitle
+        "mnhkaebcjjhencmpkapnbdaogjamfbcj",             ; 2. AppID (Edge PWA)
         "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", ; 3. BrowserPath
         "Default",                                      ; 4. BrowserProfile
         "msedge.exe"                                    ; 5. BrowserExeName
@@ -284,13 +336,6 @@ OpenCursor(Dir) {
     CursorToggle("D:\Users\autohotkey")
 }
 
-; --- Atajo para Cursor IDE (whatsapp_flask) ---
-; Ctrl+Alt+W - Cursor whatsapp
-^!w::
-{
-    OpenCursor("D:\Users\whatsapp_flask")
-    CursorToggle("D:\Users\whatsapp_flask")
-}
 
 ; --- Atajo para Cursor IDE (once-ui) ---
 ; Ctrl+Alt+E - Cursor once-ui
@@ -434,7 +479,7 @@ OpenCursor(Dir) {
 ; Ctrl+Shift+1 - venv
 ^+1::
 {
-    SendInput(".\venv\Scripts\activate")
+    SendInput(".\.venv\Scripts\activate")
 }
 
 ; --- Recargar script ---

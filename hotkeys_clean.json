@@ -1,0 +1,196 @@
+{
+    "atajos": [
+        {
+            "hotkey": "^!s",
+            "readable": "Ctrl+Alt+s",
+            "description": "--- Gemini PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^#!w",
+            "readable": "Ctrl+Alt+Win+w",
+            "description": "--- WhatsApp Web --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^!d",
+            "readable": "Ctrl+Alt+d",
+            "description": "--- Gemini1 PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^!9",
+            "readable": "Ctrl+Alt+9",
+            "description": "--- pgAdmin PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^!f",
+            "readable": "Ctrl+Alt+f",
+            "description": "--- ChatGPT PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^+g",
+            "readable": "Ctrl+Shift+g",
+            "description": "--- GitHub PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^!t",
+            "readable": "Ctrl+Alt+t",
+            "description": "--- WebUI PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "^#!x",
+            "readable": "Ctrl+Alt+Win+x",
+            "description": "--- WebUI 3000 PWA --- (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "#h",
+            "readable": "Win+h",
+            "description": "Abrir ayuda navegador (Abre o alterna aplicación web)"
+        },
+        {
+            "hotkey": "+!r",
+            "readable": "Shift+Alt+r",
+            "description": "Shift+Alt+R Obsidian"
+        },
+        {
+            "hotkey": "^!a",
+            "readable": "Ctrl+Alt+a",
+            "description": "--- Cursor autohotkey --- (Abre Cursor IDE)"
+        },
+        {
+            "hotkey": "#!+w",
+            "readable": "Shift+Alt+Win+w",
+            "description": "--- Cursor whatsapp --- (Abre Cursor IDE)"
+        },
+        {
+            "hotkey": "^!e",
+            "readable": "Ctrl+Alt+e",
+            "description": "--- Cursor once-ui --- (Abre Cursor IDE)"
+        },
+        {
+            "hotkey": "!+s",
+            "readable": "Shift+Alt+s",
+            "description": "--- Cursor Originsong --- (Abre Cursor IDE)"
+        },
+        {
+            "hotkey": "!+d",
+            "readable": "Shift+Alt+d",
+            "description": "--- Cursor Scripts --- (Abre Cursor IDE)"
+        },
+        {
+            "hotkey": "^!p",
+            "readable": "Ctrl+Alt+p",
+            "description": "Cursor con workspace SSH ---"
+        },
+        {
+            "hotkey": "^!b",
+            "readable": "Ctrl+Alt+b",
+            "description": "--- ChatGPT en ventana dedicada ---"
+        },
+        {
+            "hotkey": "#t",
+            "readable": "Win+t",
+            "description": "--- Warp Terminal --- (Abre o alterna aplicación)"
+        },
+        {
+            "hotkey": "^!y",
+            "readable": "Ctrl+Alt+y",
+            "description": "--- YouTube Music --- (Abre o alterna aplicación)"
+        },
+        {
+            "hotkey": "#o",
+            "readable": "Win+o",
+            "description": "--- WhatsApp --- (Abre o alterna aplicación)"
+        },
+        {
+            "hotkey": "^#3",
+            "readable": "Ctrl+Win+3",
+            "description": "--- VYSOR --- (Abre o alterna aplicación)"
+        },
+        {
+            "hotkey": "#y",
+            "readable": "Win+y",
+            "description": "--- turbo2.bat --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!v",
+            "readable": "Ctrl+Alt+v",
+            "description": "--- ChatGPT Web --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!2",
+            "readable": "Ctrl+Alt+2",
+            "description": "--- YouTube Web --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!3",
+            "readable": "Ctrl+Alt+3",
+            "description": "--- Google Notebook --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!4",
+            "readable": "Ctrl+Alt+4",
+            "description": "--- Google Colab --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!#r",
+            "readable": "Ctrl+Alt+Win+r",
+            "description": "--- PedidosYa --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "!g",
+            "readable": "Alt+g",
+            "description": "--- LangChain Docs --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^!8",
+            "readable": "Ctrl+Alt+8",
+            "description": "--- Chatwoot Harmonykicks --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "#j",
+            "readable": "Win+j",
+            "description": "--- LangGraph --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "+!3",
+            "readable": "Shift+Alt+3",
+            "description": "--- Gemini Web --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^+!r",
+            "readable": "Ctrl+Shift+Alt+r",
+            "description": "--- Rappi --- (Abre sitio web o ejecuta comando)"
+        },
+        {
+            "hotkey": "^+1",
+            "readable": "Ctrl+Shift+1",
+            "description": "--- Activar venv --- (Envía secuencia de teclas)"
+        }
+    ],
+    "funciones": [
+        {
+            "nombre": "TogglePWA",
+            "parametros": "WindowTitle, AppID, BrowserPath, BrowserProfile, BrowserExeName",
+            "descripcion": "Verificar privilegios administrador Ejecución ExportHotkeysToJSON inicio Función TogglePWA"
+        },
+        {
+            "nombre": "ToggleApp",
+            "parametros": "WindowTitle, AppExePath, AppExeName",
+            "descripcion": "Función ToggleApp"
+        },
+        {
+            "nombre": "CursorToggle",
+            "parametros": "Dir",
+            "descripcion": "Abre Obsidian con argumentos --- Cursor autohotkey ---"
+        },
+        {
+            "nombre": "OpenCursor",
+            "parametros": "Dir",
+            "descripcion": "Abre Obsidian con argumentos --- Cursor autohotkey --- --- Cursor whatsapp ---"
+        },
+        {
+            "nombre": "OpenCursorSSH",
+            "parametros": "SSHUser, SSHHost, SSHPath",
+            "descripcion": "Abrir Cursor en el directorio especificado Función OpenCursorSSH Abre Cursor IDE conectado a un espacio de trabajo remoto mediante SSH Parámetros: SSHUser - Usuario del servidor remoto SSHHost - IP/Dominio del servidor SSHPath - Ruta absoluta en el servidor Versión: 1.0.0"
+        }
+    ]
+}
